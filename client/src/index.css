@@ -346,3 +346,55 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
   .developer-grid { margin: 80px 0 70px; }.developer-pillars { grid-template-columns: 1fr 1fr; row-gap: 15px; }.developer-pillars div { padding-top: 15px; }
   .contact-grid { margin: 82px 0 90px; }.form-row { grid-template-columns: 1fr; gap: 0; }.form-actions { flex-wrap: wrap; gap: 18px; }.contact-investor .contact-footer { margin-top: 0; }
 }
+
+/* Scroll choreography: editorial reveals, gentle depth, and panel slides. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready > section:not(.hero-panel) {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity .85s var(--ease-out), transform .95s var(--ease-out);
+  }
+
+  .motion-ready > section:not(.hero-panel).is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .motion-ready > section:not(.hero-panel).is-visible .section-kicker {
+    animation: reveal-kicker .65s var(--ease-out) both;
+  }
+
+  .hero-image {
+    transform: translate3d(0, var(--hero-scroll, 0px), 0) scale(1.04);
+    transition: transform .12s linear;
+  }
+
+  .slide-media {
+    animation: panel-slide-in .48s var(--ease-out) both;
+  }
+
+  .building-detail h3,
+  .space-copy h3 {
+    animation: text-slide-in .42s var(--ease-out) both;
+  }
+
+  @keyframes reveal-kicker {
+    from { opacity: 0; transform: translateX(-16px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes panel-slide-in {
+    from { opacity: 0; transform: translateX(28px) scale(1.035); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+
+  @keyframes text-slide-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-image { transform: none; }
+}
