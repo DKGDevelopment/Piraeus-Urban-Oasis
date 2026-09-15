@@ -1,5 +1,24 @@
 # Change Log
 
+## 2026-09-15 — Hero rebuild and simplification
+
+### Added
+
+- Rebuilt the header into a solid two-row `.site-header` (utility strip + nav row) sitting above the hero, sized so header + hero fill the full screen on landing.
+- Added a bottom-left `.hero-copy` overlay headline directly on the video ("Where Business Comes Together").
+
+### Removed
+
+- Removed the Masterplan/Residences/Location hero toggle and the bottom-right residence/location widget cards, per client direction to rebuild the hero step by step.
+- Removed the `poster` image and `.hero-wash` gradient overlay from the hero video at the client's request; the video now shows the `.hero-panel` background color while loading instead of a placeholder image.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-15 — Motion and Bunny CDN hero video
 
 ### Added

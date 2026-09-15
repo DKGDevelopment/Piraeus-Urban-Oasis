@@ -35,17 +35,10 @@ const rationale = [
 
 const timeline = ["Architectural study submitted", "Current project maturation", "Partner network formation", "Initial investor release", "Public sales releases", "Construction phases", "Indicative delivery"];
 
-const heroTabs = [
-  { label: "Masterplan", id: "masterplan" },
-  { label: "Residences", id: "residences" },
-  { label: "Location", id: "location" },
-];
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeBuilding, setActiveBuilding] = useState(0);
   const [activeResidence, setActiveResidence] = useState(0);
-  const [heroTab, setHeroTab] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
@@ -112,34 +105,11 @@ export default function Home() {
 
       <section id="top" className="hero-panel investor-hero">
         {/* Media note: keep the MP4 external on Bunny CDN; the local poster preserves the design if video is unavailable. */}
-        <video className="hero-image" autoPlay muted loop playsInline preload="metadata" poster={images.hero} aria-label="Indicative moving view of Urban Piraeus Oasis overlooking the waterfront">
+        <video className="hero-image" autoPlay muted loop playsInline preload="auto" aria-label="Indicative moving view of Urban Piraeus Oasis overlooking the waterfront">
           <source src="https://piraeusgate.b-cdn.net/kling_20260915_VIDEO__4577_0.mp4" type="video/mp4" />
-        </video><div className="hero-wash" />
-
-        <div className="hero-tabs">
-          <div className="hero-tabs-row">
-            {heroTabs.map((tab, index) => (
-              <button key={tab.id} className={index === heroTab ? "active" : ""} onClick={() => { setHeroTab(index); scrollTo(tab.id); }}>{tab.label}</button>
-            ))}
-          </div>
-          <div className="hero-tabs-line"><span className={`hero-tabs-dot dot-${heroTab}`} /></div>
-        </div>
-
+        </video>
         <div className="hero-copy">
-          <p className="eyebrow light">Piraeus, Greece</p>
-          <h1>Where the city<br />meets the sea.</h1>
-        </div>
-
-        <div className="hero-widgets">
-          <button className="hero-widget hero-widget-gallery" onClick={() => setLightbox(images.rooftop)}>
-            <img src={images.rooftop} alt="Indicative residence render preview" />
-            <span className="hero-widget-label">Available residences <ArrowUpRight size={13} /></span>
-          </button>
-          <a className="hero-widget hero-widget-map" href="#location" onClick={(event) => { event.preventDefault(); scrollTo("location"); }} aria-label="View project location">
-            <div className="map-grid" />
-            <div className="map-pin small-pin"><span>PU</span><i /></div>
-            <span className="hero-widget-label">Piraeus, Greece <ArrowUpRight size={13} /></span>
-          </a>
+          <h1>Where Business<br />Comes Together</h1>
         </div>
       </section>
 

@@ -14,6 +14,14 @@ This repository is the **Urban Piraeus Oasis** investor-facing marketing website
 
 Do not replace the current visual system with a generic template. Preserve the editorial Mediterranean design language: warm sand and paper backgrounds, deep ink green, terracotta accents, Cormorant Garamond display typography, DM Sans utility typography, generous whitespace, asymmetric grids, and understated borders.
 
+## Header and hero layout
+
+The header is a solid two-row `.site-header` (a dark `.utility-bar` strip above a `.site-nav` row with a dark CTA block) sitting in normal document flow above the hero, not overlaid on it. The hero (`.hero-panel`) is sized to `calc(100vh - <header height>)` (106px desktop, 66px mobile) so the header and hero together exactly fill the screen on landing, with the video reaching the bottom edge and no gap before the next section.
+
+The hero is intentionally minimal right now (per client direction, being rebuilt step by step): just the video and a bottom-left `.hero-copy` overlay headline. The previous Masterplan/Residences/Location toggle and bottom-right residence/location widget cards were removed — don't re-add them without the client asking again.
+
+If you change header height (add/remove a row, resize the nav), update the `calc(100vh - ...)` value in `.hero-panel` (both the desktop rule and the `@media (max-width: 800px)` override) to match, or the hero will stop filling the full screen.
+
 ## Hero video
 
 The homepage hero uses the provided Bunny CDN public MP4:
@@ -23,9 +31,9 @@ The homepage hero uses the provided Bunny CDN public MP4:
 Implementation details:
 
 - The video is in the `#top` hero section in `Home.tsx`.
-- It is `autoPlay`, `muted`, `loop`, `playsInline`, and `preload="metadata"`.
-- The existing `/images/piraeus-hero.jpg` remains the `poster` fallback.
-- Keep the `.hero-image` class and `.hero-wash` overlay intact so text contrast and crop remain consistent.
+- It is `autoPlay`, `muted`, `loop`, `playsInline`, and `preload="auto"`.
+- There is intentionally no `poster` image — the client asked for the loading placeholder to be removed, so the video element shows the `.hero-panel` background color until the video can play.
+- Keep the `.hero-image` class intact so crop/fit stays consistent.
 - Do not download or commit the 45 MB Bunny video into the repository.
 
 ## Motion system
