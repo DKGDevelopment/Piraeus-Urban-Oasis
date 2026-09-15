@@ -63,7 +63,9 @@ export default function Home() {
       </header>
 
       <section id="top" className="hero-panel investor-hero">
-        <img className="hero-image" src={images.hero} alt="Indicative render of Urban Piraeus Oasis overlooking the waterfront" /><div className="hero-wash" />
+        <video className="hero-image" autoPlay muted loop playsInline preload="metadata" poster={images.hero} aria-label="Indicative moving view of Urban Piraeus Oasis overlooking the waterfront">
+          <source src="https://piraeusgate.b-cdn.net/kling_20260915_VIDEO__4577_0.mp4" type="video/mp4" />
+        </video><div className="hero-wash" />
         <div className="hero-copy"><p className="eyebrow light">Piraeus / Greece <span>Indicative development</span></p><h1>Urban<br /><em>Piraeus</em><br />Oasis.</h1><p className="hero-subtitle">Nearly 400 residences across seven residential buildings.</p><p className="hero-description">A landmark large-scale residential development introducing high-quality, accessible urban living to the evolving Piraeus ecosystem.</p><div className="hero-actions"><button className="solid-button" onClick={() => scrollTo("overview")}>Explore the development <ArrowDownRight size={16} /></button><button className="ghost-button" onClick={() => scrollTo("contact")}>Request investor information <ArrowUpRight size={16} /></button></div></div>
         <div className="hero-meta"><span>UPO — 01</span><span className="hero-line" /><button onClick={() => scrollTo("overview")}>Scroll to explore <ChevronDown size={16} /></button></div><div className="hero-vertical">Residential development / Piraeus</div>
       </section>
