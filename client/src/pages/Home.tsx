@@ -49,6 +49,8 @@ export default function Home() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
+  // Motion note: keep this observer lightweight. It reveals whole editorial chapters;
+  // individual tab transitions are handled by keyed media elements below.
   useEffect(() => {
     const shell = document.querySelector<HTMLElement>(".site-shell");
     const sections = Array.from(document.querySelectorAll<HTMLElement>(".site-shell > section:not(.hero-panel)"));
@@ -109,6 +111,7 @@ export default function Home() {
       </header>
 
       <section id="top" className="hero-panel investor-hero">
+        {/* Media note: keep the MP4 external on Bunny CDN; the local poster preserves the design if video is unavailable. */}
         <video className="hero-image" autoPlay muted loop playsInline preload="metadata" poster={images.hero} aria-label="Indicative moving view of Urban Piraeus Oasis overlooking the waterfront">
           <source src="https://piraeusgate.b-cdn.net/kling_20260915_VIDEO__4577_0.mp4" type="video/mp4" />
         </video><div className="hero-wash" />
