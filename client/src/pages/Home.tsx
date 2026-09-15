@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDownRight, ArrowUpRight, ChevronDown, ChevronRight, Compass, Leaf, Menu, Plus, X } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, ChevronRight, Compass, Leaf, Menu, X } from "lucide-react";
 
 const images = {
   hero: "/images/piraeus-hero.jpg",
@@ -35,10 +35,17 @@ const rationale = [
 
 const timeline = ["Architectural study submitted", "Current project maturation", "Partner network formation", "Initial investor release", "Public sales releases", "Construction phases", "Indicative delivery"];
 
+const heroTabs = [
+  { label: "Masterplan", id: "masterplan" },
+  { label: "Residences", id: "residences" },
+  { label: "Location", id: "location" },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeBuilding, setActiveBuilding] = useState(0);
   const [activeResidence, setActiveResidence] = useState(0);
+  const [heroTab, setHeroTab] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
@@ -84,22 +91,53 @@ export default function Home() {
 
   return (
     <main className="site-shell">
-      <header className={`site-nav ${menuOpen ? "is-open" : ""}`}>
-        <button className="brand-mark" onClick={() => scrollTo("top")} aria-label="Back to top"><span className="brand-monogram">PU</span><span className="brand-name">Urban Piraeus<br />Oasis</span></button>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <button onClick={() => scrollTo("overview")}>Overview</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("residences")}>Residences</button><button onClick={() => scrollTo("investors")}>Investors</button>
-        </nav>
-        <button className="nav-cta" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={15} /></button>
-        <button className="menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-        {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "residences", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
+      <header className={`site-header ${menuOpen ? "is-open" : ""}`}>
+        <div className="utility-bar">
+          <span className="utility-cell utility-brand">Urban Piraeus Oasis</span>
+          <span className="utility-cell utility-fill" aria-hidden="true" />
+          <button className="utility-cell utility-cta" onClick={() => scrollTo("contact")}>Investor log in <ArrowUpRight size={13} /></button>
+        </div>
+        <div className="site-nav">
+          <button className="brand-mark" onClick={() => scrollTo("top")} aria-label="Back to top"><span className="brand-monogram">PU</span><span className="brand-name">Urban Piraeus<br />Oasis</span></button>
+          <nav className="desktop-nav" aria-label="Primary navigation">
+            <button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("residences")}>Residences</button><button onClick={() => scrollTo("investors")}>Investors</button><button onClick={() => scrollTo("overview")}>Gallery</button>
+          </nav>
+          <button className="nav-cta" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={15} /></button>
+          <button className="menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+          {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "residences", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
+        </div>
       </header>
 
       <section id="top" className="hero-panel investor-hero">
         <video className="hero-image" autoPlay muted loop playsInline preload="metadata" poster={images.hero} aria-label="Indicative moving view of Urban Piraeus Oasis overlooking the waterfront">
           <source src="https://piraeusgate.b-cdn.net/kling_20260915_VIDEO__4577_0.mp4" type="video/mp4" />
         </video><div className="hero-wash" />
-        <div className="hero-copy"><p className="eyebrow light">Piraeus / Greece <span>Indicative development</span></p><h1>Urban<br /><em>Piraeus</em><br />Oasis.</h1><p className="hero-subtitle">Nearly 400 residences across seven residential buildings.</p><p className="hero-description">A landmark large-scale residential development introducing high-quality, accessible urban living to the evolving Piraeus ecosystem.</p><div className="hero-actions"><button className="solid-button" onClick={() => scrollTo("overview")}>Explore the development <ArrowDownRight size={16} /></button><button className="ghost-button" onClick={() => scrollTo("contact")}>Request investor information <ArrowUpRight size={16} /></button></div></div>
-        <div className="hero-meta"><span>UPO — 01</span><span className="hero-line" /><button onClick={() => scrollTo("overview")}>Scroll to explore <ChevronDown size={16} /></button></div><div className="hero-vertical">Residential development / Piraeus</div>
+
+        <div className="hero-tabs">
+          <div className="hero-tabs-row">
+            {heroTabs.map((tab, index) => (
+              <button key={tab.id} className={index === heroTab ? "active" : ""} onClick={() => { setHeroTab(index); scrollTo(tab.id); }}>{tab.label}</button>
+            ))}
+          </div>
+          <div className="hero-tabs-line"><span className={`hero-tabs-dot dot-${heroTab}`} /></div>
+        </div>
+
+        <div className="hero-copy">
+          <p className="eyebrow light">Piraeus, Greece</p>
+          <h1>Where the city<br />meets the sea.</h1>
+        </div>
+
+        <div className="hero-widgets">
+          <button className="hero-widget hero-widget-gallery" onClick={() => setLightbox(images.rooftop)}>
+            <img src={images.rooftop} alt="Indicative residence render preview" />
+            <span className="hero-widget-label">Available residences <ArrowUpRight size={13} /></span>
+          </button>
+          <a className="hero-widget hero-widget-map" href="#location" onClick={(event) => { event.preventDefault(); scrollTo("location"); }} aria-label="View project location">
+            <div className="map-grid" />
+            <div className="map-pin small-pin"><span>PU</span><i /></div>
+            <span className="hero-widget-label">Piraeus, Greece <ArrowUpRight size={13} /></span>
+          </a>
+        </div>
       </section>
 
       <section id="overview" className="stats-section project-facts"><div className="stats-intro"><span className="eyebrow">The project</span><h2>Scale with<br /><em>intention.</em></h2><p className="body-copy dark-copy">A large-scale residential community with a clear phased development and sales strategy.</p></div><div className="stat-grid stat-grid-six"><div className="stat-item"><span>01</span><strong>7</strong><p>Residential buildings</p></div><div className="stat-item"><span>02</span><strong>~400</strong><p>Indicative residences</p></div><div className="stat-item"><span>03</span><strong>~2,500 sqm</strong><p>Initial investor allocation</p></div><div className="stat-item"><span>04</span><strong>4 types</strong><p>Studios through 3-bedroom residences</p></div><div className="stat-item"><span>05</span><strong>Phased</strong><p>Development and sales strategy</p></div><div className="stat-item"><span>06</span><strong>Submitted</strong><p>Architectural study status</p></div></div></section>
