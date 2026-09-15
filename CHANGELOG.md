@@ -1,5 +1,19 @@
 # Change Log
 
+## 2026-09-15 — Card-stack scroll effect for the second section
+
+### Added
+
+- Made the hero (`.hero-panel`) sticky so it stays pinned as the page scrolls.
+- Gave the following section (`.stats-section` / "The project") rounded top corners and a lifting shadow so it visually slides up and over the pinned hero like a card sliding onto another card.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-15 — Hero rebuild and simplification
 
 ### Added
