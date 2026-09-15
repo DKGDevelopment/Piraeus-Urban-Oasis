@@ -53,6 +53,7 @@ The current motion is intentionally editorial and restrained:
 - Keep the masterplan and residence selectors functional.
 - Keep the inquiry form as a frontend-only interaction unless an approved backend/CRM integration is requested.
 - Preserve the current WhatsApp and email CTA behavior unless the client provides confirmed contact details.
+- The `#overview` section (`.workplace-section`) intentionally contains literal reference copy ("250 Broadway", "Lower Manhattan", "648,000 sf", 31 floors, 2021) at the client's explicit request, not Piraeus facts. Don't silently rewrite it to match the project — check with the client first, the same way this was flagged before implementing.
 
 ## Validation
 

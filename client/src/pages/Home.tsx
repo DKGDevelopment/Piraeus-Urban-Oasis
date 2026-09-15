@@ -7,6 +7,7 @@ const images = {
   lounge: "/images/piraeus-lounge.jpg",
   rooftop: "/images/piraeus-rooftop.jpg",
   detail: "/images/piraeus-detail.jpg",
+  workplace: "/images/piraeus-workplace.jpg",
 };
 
 const buildings = [
@@ -113,7 +114,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="overview" className="stats-section project-facts"><div className="stats-intro"><span className="eyebrow">The project</span><h2>Scale with<br /><em>intention.</em></h2><p className="body-copy dark-copy">A large-scale residential community with a clear phased development and sales strategy.</p></div><div className="stat-grid stat-grid-six"><div className="stat-item"><span>01</span><strong>7</strong><p>Residential buildings</p></div><div className="stat-item"><span>02</span><strong>~400</strong><p>Indicative residences</p></div><div className="stat-item"><span>03</span><strong>~2,500 sqm</strong><p>Initial investor allocation</p></div><div className="stat-item"><span>04</span><strong>4 types</strong><p>Studios through 3-bedroom residences</p></div><div className="stat-item"><span>05</span><strong>Phased</strong><p>Development and sales strategy</p></div><div className="stat-item"><span>06</span><strong>Submitted</strong><p>Architectural study status</p></div></div></section>
+      <section id="overview" className="workplace-section">
+        <div className="workplace-intro">
+          <div className="workplace-copy">
+            <p>Located in the heart of Lower Manhattan, 250 Broadway combines exceptional connectivity with four-sided window exposures, bringing abundant natural light and expansive city views to every floor.</p>
+            <p>A 2021 modernization introduced touchless entry, destination-dispatch elevators, and upgraded amenities designed for today's workplace.</p>
+          </div>
+          <div className="workplace-tagline">
+            <p className="workplace-tagline-title">Every Morning<br />Looks Different.</p>
+            <p className="workplace-scroll">Scroll to Explore</p>
+          </div>
+        </div>
+        <div className="workplace-media">
+          <img src={images.workplace} alt="Urban Piraeus Oasis building" />
+          <div className="workplace-media-overlay">
+            <span>A Workplace</span>
+            <span className="workplace-dot" aria-hidden="true" />
+            <span>That Works</span>
+          </div>
+        </div>
+        <div className="workplace-stats">
+          <div><span>Rentable area</span><strong>648,000 sf</strong></div>
+          <div><span>Total floors</span><strong>31</strong></div>
+          <div><span>Year renovated</span><strong>2021</strong></div>
+        </div>
+      </section>
 
       <section className="ink-section vision-panel"><div className="section-kicker light"><span>01</span><span>The vision</span></div><div className="intro-grid"><div className="intro-title"><p className="eyebrow light">A new residential community</p><h2>Quality living,<br /><span>within reach.</span></h2></div><div className="intro-copy"><p className="large-copy">Urban Piraeus Oasis brings together contemporary architecture, different types of homes and shared spaces that make everyday life feel more complete.</p><p className="body-copy muted-light">The project is conceived as a connected residential destination within the broader, evolving Piraeus ecosystem — a place where landscape, amenities and access work together.</p><button className="text-link light-link" onClick={() => scrollTo("location")}>Why Piraeus <ArrowDownRight size={17} /></button></div></div><div className="outline-words" aria-hidden="true"><span>OASIS</span><span>OASIS</span></div></section>
 

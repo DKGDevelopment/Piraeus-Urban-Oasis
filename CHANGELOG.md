@@ -1,5 +1,20 @@
 # Change Log
 
+## 2026-09-15 — Rebuild second section to match reference layout
+
+### Added
+
+- Replaced the "Scale with intention." stat-grid section with a new `.workplace-section`: an intro paragraph pair plus a small tagline, a large image panel with split overlay text, and a three-tile stats row, matching a client-provided reference screenshot.
+- Moved the client-committed building photo (`A9zn6w26_1237uyk_1d4.jpg`, added directly on `main`) into `client/public/images/piraeus-workplace.jpg` and wired it in as the section's media.
+- Per explicit client request, the section text is a literal copy from the reference (Lower Manhattan / 250 Broadway / 648,000 sf / 31 floors / 2021), not adapted to the Piraeus project — flagged to the client as a content mismatch before implementing as asked.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-15 — Card-stack scroll effect for the second section
 
 ### Added
