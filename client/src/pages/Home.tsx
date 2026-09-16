@@ -304,6 +304,10 @@ export default function Home() {
 
       <section id="area-gallery" ref={areaScrollOuterRef} className="area-scroll-outer">
         <div className="area-scroll-sticky">
+          <div className="area-scroll-copy">
+            <p>A place shaped by centuries of trade, industry and connection, Piraeus Gate carries a history that reaches back to the foundations of modern Piraeus.</p>
+            <p>Once part of the city&rsquo;s industrial heart, the site has witnessed generations of movement, enterprise and change.</p>
+          </div>
           <div className="area-scroll-track" ref={areaScrollTrackRef}>
             {areaGalleryImages.map((src, index) => (
               <div className="area-scroll-item" key={index}>

@@ -88,6 +88,8 @@ Added `#area-gallery` (`.area-scroll-outer`) directly after the masterplan secti
 - `outer.style.height` is (re)computed on mount, on `resize`, and on `load` (images can change layout after paint) — keep that in sync if the item count or width changes.
 - `areaGalleryImages` in `Home.tsx` currently reuses existing site photos (`locationMarinaZea`/`locationTower`/`locationPort`/`locationKaraiskaki`/`courtyard`/`lounge`/`rooftop`/`detail`) as placeholders — the client is providing their own images for this section next; swap the array once those are committed, following the same repo-root-commit → `client/public/images/` move pattern used elsewhere.
 - Keeps the same card-stack sticky/overlap treatment (top border-radius + shadow) as the surrounding full-bleed sections. Its own internal `position: sticky` is independent of that — don't confuse the two.
+- `.area-scroll-sticky` is a flex column: `.area-scroll-copy` (fixed, non-scrolling intro text, two columns on desktop) sits above `.area-scroll-track` (the horizontally-translating strip, `flex: 1 1 auto`). Each `.area-scroll-item` is near-full-viewport-width (`min(92vw, 1500px)`) with a 6px gap — deliberately close to full-bleed, not a small marquee-style strip with wide gaps between images.
+- `.area-scroll-copy` holds the client-provided intro copy about Piraeus Gate's history, set in the site's serif display face (`var(--serif)`, Cormorant Garamond) at body-paragraph size, matching a client-provided reference screenshot's typography.
 
 ## Content and behavior constraints
 

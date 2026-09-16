@@ -1,5 +1,22 @@
 # Change Log
 
+## 2026-09-16 — Enlarge horizontal gallery images and add intro copy
+
+### Fixed
+
+- The horizontal-scroll gallery images were too small relative to the section (roughly 1:10 scale, wide gaps, reading as a marquee). Each image is now near-full-viewport-width with a tight 6px gap, matching the intended full-bleed feel.
+
+### Added
+
+- Added the client-provided intro copy about Piraeus Gate's history to the top of the section, in the site's serif display face (Cormorant Garamond) at a larger body size, matching a client-provided reference screenshot's typography.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Add scroll-locked horizontal image gallery after the masterplan
 
 ### Added
