@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Fix Piraeus Tower/Karaiskaki/Port/Marina Zeas pin coordinates
+
+### Fixed
+
+- The four POI markers on the section-4 map (Piraeus Tower, Karaiskaki Stadium, Piraeus Port, Marina Zeas) used approximate placeholder coordinates. Updated to client-confirmed coordinates.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Wire in real historical Piraeus photos for the gallery
 
 ### Changed

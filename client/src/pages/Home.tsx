@@ -60,10 +60,10 @@ const locationImages = [
 // other Piraeus landmarks are approximate, not survey-accurate.
 const mapPoints = [
   { name: "Urban Piraeus Oasis", lat: 37.94734210830303, lng: 23.656522176345334, isSite: true },
-  { name: "Piraeus Tower", lat: 37.9428, lng: 23.6464 },
-  { name: "Karaiskaki Stadium", lat: 37.9486, lng: 23.6428 },
-  { name: "Piraeus Port", lat: 37.9382, lng: 23.6459 },
-  { name: "Marina Zeas", lat: 37.933, lng: 23.6482 },
+  { name: "Piraeus Tower", lat: 37.94494274779244, lng: 23.644035447032767 },
+  { name: "Karaiskaki Stadium", lat: 37.94235126829436, lng: 23.667790551812583 },
+  { name: "Piraeus Port", lat: 37.9424992919772, lng: 23.641454157442073 },
+  { name: "Marina Zeas", lat: 37.938161303578205, lng: 23.646610829187676 },
 ];
 
 // A muted, desaturated custom style so the map reads as part of the site's editorial palette.
