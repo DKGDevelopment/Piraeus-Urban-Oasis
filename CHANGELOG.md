@@ -1,5 +1,23 @@
 # Change Log
 
+## 2026-09-16 — Remove the residences section and update hero/overview copy
+
+### Removed
+
+- Removed the `#residences` section entirely at the client's request: the studio/1-bed/2-bed/3-bed switcher, its `residences` data array, `activeResidence` state, the now-unused `ChevronRight` icon import, nav links to `#residences` (desktop + mobile), and all of its dedicated CSS (`.rhythm-section`, `.rhythm-head`, `.space-switcher`, `.space-feature`, `.space-image`, `.space-copy`, `.residence-section`, `.plan-placeholder`, `.plan-room`, `.light-disclaimer`, and the now-orphaned `.slide-media`/`.space-copy h3` reveal animations/keyframes). Renumbered the remaining section kickers (investors, rationale, timeline, developer) to stay sequential.
+
+### Changed
+
+- Hero headline: "Where Business Comes Together" → "Where People Come Together".
+- Section 2 image overlay text: "A Workplace" / "That Works" → "A community" / "that works".
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Center and widen the gallery intro copy
 
 ### Changed
