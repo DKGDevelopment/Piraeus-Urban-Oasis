@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Wire in real historical Piraeus photos for the gallery
+
+### Changed
+
+- Replaced the placeholder images in the horizontal-scroll gallery with the client's seven historical black-and-white Piraeus photos (harbor views, street scenes, the old electric railway), committed directly to `main` under "Old Piraeus v1". Moved into `client/public/images/` as `piraeus-old-01.png` through `piraeus-old-07.webp`.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Double the gallery thumbnail size
 
 ### Changed

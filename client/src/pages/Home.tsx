@@ -14,17 +14,23 @@ const images = {
   locationTower: "/images/piraeus-location-tower.jpg",
   locationKaraiskaki: "/images/piraeus-location-karaiskaki.jpg",
   masterplan: "/images/piraeus-masterplan.jpg",
+  oldPiraeus01: "/images/piraeus-old-01.png",
+  oldPiraeus02: "/images/piraeus-old-02.png",
+  oldPiraeus03: "/images/piraeus-old-03.png",
+  oldPiraeus04: "/images/piraeus-old-04.png",
+  oldPiraeus05: "/images/piraeus-old-05.png",
+  oldPiraeus06: "/images/piraeus-old-06.png",
+  oldPiraeus07: "/images/piraeus-old-07.webp",
 };
 
 const areaGalleryImages = [
-  images.locationMarinaZea,
-  images.locationTower,
-  images.locationPort,
-  images.locationKaraiskaki,
-  images.courtyard,
-  images.lounge,
-  images.rooftop,
-  images.detail,
+  images.oldPiraeus01,
+  images.oldPiraeus02,
+  images.oldPiraeus03,
+  images.oldPiraeus04,
+  images.oldPiraeus05,
+  images.oldPiraeus06,
+  images.oldPiraeus07,
 ];
 
 const residences = [
@@ -310,7 +316,7 @@ export default function Home() {
           <div className="area-scroll-track" ref={areaScrollTrackRef}>
             {areaGalleryImages.map((src, index) => (
               <div className="area-scroll-item" key={index}>
-                <img src={src} alt="Piraeus area" />
+                <img src={src} alt="Historical view of Piraeus" />
               </div>
             ))}
           </div>
