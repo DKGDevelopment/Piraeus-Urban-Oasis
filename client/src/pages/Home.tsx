@@ -13,17 +13,8 @@ const images = {
   locationPort: "/images/piraeus-location-port.jpg",
   locationTower: "/images/piraeus-location-tower.jpg",
   locationKaraiskaki: "/images/piraeus-location-karaiskaki.jpg",
+  masterplan: "/images/piraeus-masterplan.jpg",
 };
-
-const buildings = [
-  { id: "A", phase: "Initial release", floors: "Indicative 6 levels", mix: "Studios / 1BR / 2BR", detail: "The first address in the oasis, opening toward the planted central court.", image: images.courtyard },
-  { id: "B", phase: "Planned phase", floors: "Indicative 6 levels", mix: "1BR / 2BR / 3BR", detail: "A calm residential volume with morning light and a generous shared threshold.", image: images.hero },
-  { id: "C", phase: "Planned phase", floors: "Indicative 7 levels", mix: "Studios / 1BR / 2BR", detail: "Compact, connected living with views toward the evolving Piraeus skyline.", image: images.lounge },
-  { id: "D", phase: "Planned phase", floors: "Indicative 7 levels", mix: "1BR / 2BR / 3BR", detail: "A family-oriented building balancing privacy, landscape and amenity access.", image: images.rooftop },
-  { id: "E", phase: "Planned phase", floors: "Indicative 6 levels", mix: "Studios / 1BR / 2BR", detail: "A flexible typology for residents looking for a more effortless urban base.", image: images.detail },
-  { id: "F", phase: "Future release", floors: "Indicative 7 levels", mix: "1BR / 2BR / 3BR", detail: "Designed to complete the western edge of the masterplan.", image: images.courtyard },
-  { id: "G", phase: "Future release", floors: "Indicative 6 levels", mix: "Selected larger homes", detail: "A final residential marker with a more private relationship to the horizon.", image: images.rooftop },
-];
 
 const residences = [
   { name: "Studios", size: "Indicative 35–48 sqm", copy: "Efficient, light-filled homes for a connected urban life.", image: images.detail },
@@ -48,9 +39,10 @@ const locationImages = [
   { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus", label: "Karaiskaki Stadium" },
 ];
 
-// Indicative coordinates — approximate Piraeus landmarks, not survey-accurate.
+// Urban Piraeus Oasis uses the client-confirmed site coordinates. The
+// other Piraeus landmarks are approximate, not survey-accurate.
 const mapPoints = [
-  { name: "Urban Piraeus Oasis", lat: 37.9421, lng: 23.6462, isSite: true },
+  { name: "Urban Piraeus Oasis", lat: 37.94734210830303, lng: 23.656522176345334, isSite: true },
   { name: "Piraeus Tower", lat: 37.9428, lng: 23.6464 },
   { name: "Karaiskaki Stadium", lat: 37.9486, lng: 23.6428 },
   { name: "Piraeus Port", lat: 37.9382, lng: 23.6459 },
@@ -146,10 +138,8 @@ function LocationMap() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeBuilding, setActiveBuilding] = useState(0);
   const [activeResidence, setActiveResidence] = useState(0);
   const [locationSlide, setLocationSlide] = useState(0);
-  const [lightbox, setLightbox] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -198,7 +188,6 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const building = buildings[activeBuilding];
   const residence = residences[activeResidence];
 
   return (
@@ -274,7 +263,9 @@ export default function Home() {
 
       <LocationMap />
 
-      <section id="masterplan" className="masterplan-section"><div className="section-kicker"><span>03</span><span>Masterplan</span></div><div className="gallery-head"><div><p className="eyebrow">Seven buildings / one ecosystem</p><h2>Explore the<br /><em>masterplan.</em></h2></div><p className="body-copy">An indicative overview for early conversations. Building mix, floors, layouts and phasing remain subject to final approvals and availability.</p></div><div className="masterplan-layout"><div className="masterplan-visual"><div className="masterplan-water" /><div className="masterplan-road road-one" /><div className="masterplan-road road-two" /><div className="masterplan-park" /><div className="building-cluster">{buildings.map((item, index) => <button key={item.id} className={`building-block building-${item.id.toLowerCase()} ${index === activeBuilding ? "active" : ""}`} onClick={() => setActiveBuilding(index)} aria-label={`Explore Building ${item.id}`}>{item.id}</button>)}</div><span className="masterplan-label label-center">Central landscape</span><span className="masterplan-label label-south">Piraeus / waterfront direction</span></div><div className="building-detail"><div className="building-detail-image"><img key={building.id} className="slide-media" src={building.image} alt={`Indicative render for Building ${building.id}`} /><span className="image-label">Building {building.id} / Indicative</span></div><p className="eyebrow">Building {building.id} · {building.phase}</p><h3>{building.detail}</h3><div className="building-specs"><div><span>Height</span><strong>{building.floors}</strong></div><div><span>Unit mix</span><strong>{building.mix}</strong></div></div><button className="text-link" onClick={() => setLightbox(building.image)}>View indicative render <ArrowUpRight size={17} /></button></div></div><p className="disclaimer">Indicative masterplan and building information. Final building count, unit mix, specifications and phasing are subject to design development, approvals and availability.</p></section>
+      <section id="masterplan" className="masterplan-image-section">
+        <img src={images.masterplan} alt="Urban Piraeus Oasis masterplan" />
+      </section>
 
       <section id="residences" className="rhythm-section residence-section"><div className="section-kicker light"><span>04</span><span>The residences</span></div><div className="rhythm-head"><div><p className="eyebrow light">A home for every stage</p><h2>Find your<br /><em>right size.</em></h2></div><p className="body-copy muted-light">A range of residential typologies designed for accessible, contemporary urban living.</p></div><div className="space-switcher residence-switcher" role="tablist" aria-label="Explore residence types">{residences.map((item, index) => <button key={item.name} className={index === activeResidence ? "active" : ""} onClick={() => setActiveResidence(index)} role="tab" aria-selected={index === activeResidence}><span>0{index + 1}</span>{item.name}<ChevronRight size={15} /></button>)}</div><div className="space-feature residence-feature"><div className="space-image"><img key={residence.name} className="slide-media" src={residence.image} alt={`Indicative ${residence.name} residence interior`} /><span className="image-label">{residence.name} / Indicative</span></div><div className="space-copy"><p className="eyebrow light">{residence.size}</p><h3>{residence.name}</h3><p className="body-copy muted-light">{residence.copy}</p><div className="plan-placeholder"><div className="plan-room room-one" /><div className="plan-room room-two" /><div className="plan-room room-three" /><span>Indicative layout</span></div><p className="disclaimer light-disclaimer">Indicative layouts and specifications. Final availability and details are provided upon request.</p></div></div></section>
 
@@ -287,8 +278,6 @@ export default function Home() {
       <section className="developer-section"><div className="section-kicker light"><span>08</span><span>About DKG Development</span></div><div className="developer-grid"><div><p className="eyebrow light">The team behind the opportunity</p><h2>Built on<br /><em>delivery.</em></h2></div><div><p className="large-copy">DKG Development is building a platform for residential, hospitality and investment opportunities, with a focus on thoughtful places and long-term value creation.</p><p className="body-copy muted-light">The developer profile, completed and ongoing projects, total area under development and representative portfolio will be expanded here with confirmed corporate information.</p><button className="text-link light-link" onClick={() => scrollTo("contact")}>Request the developer profile <ArrowUpRight size={17} /></button></div></div><div className="developer-pillars"><div><Leaf size={18} /><span>Residential</span></div><div><Compass size={18} /><span>Hospitality</span></div><div><ArrowUpRight size={18} /><span>Investment</span></div><div><span className="pillar-plus">+</span><span>Greece / International network</span></div></div></section>
 
       <section id="contact" className="contact-section contact-investor"><div className="contact-mark"><span>PU</span><Leaf size={20} /></div><div className="contact-grid"><div className="contact-content"><p className="eyebrow light">Initial investor allocation</p><h2>Interested in<br /><em>the opportunity?</em></h2><p className="large-copy muted-light">Share a few details and a member of the team will come back to you with the relevant information.</p><a className="contact-link" href="https://wa.me/306900000000" target="_blank" rel="noreferrer">Contact via WhatsApp <ArrowUpRight size={18} /></a></div><form className="investor-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}><div className="form-row"><label>Name<input required name="name" placeholder="Your name" /></label><label>Company<input name="company" placeholder="Company name" /></label></div><div className="form-row"><label>Country / market<input name="country" placeholder="Country or market" /></label><label>Email<input required type="email" name="email" placeholder="you@company.com" /></label></div><div className="form-row"><label>Phone / WhatsApp<input name="phone" placeholder="+30 ..." /></label><label>Investor profile<select name="profile" defaultValue=""><option value="" disabled>Select one</option><option>Private investor</option><option>Family office</option><option>Institutional investor</option><option>Partner / advisor</option></select></label></div><label>Indicative interest<textarea name="message" rows={3} placeholder="Tell us what you would like to explore" /></label><div className="form-actions"><button type="submit" className="solid-button">{submitted ? "Request received" : "Request further information"} <ArrowUpRight size={16} /></button><button type="button" className="form-link" onClick={() => window.location.href = "mailto:investors@urbanpiraeusoasis.com"}>Schedule a call</button></div>{submitted && <p className="form-success">Thank you. Your request has been captured for the project team.</p>}<p className="form-note">Your details will be shared with the designated project contact and relevant CRM workflow.</p></form></div><div className="contact-footer"><span>UPO — 01</span><span>© 2026 Urban Piraeus Oasis</span><span>Privacy / Terms</span></div></section>
-
-      {lightbox && <div className="lightbox" role="dialog" aria-modal="true" onClick={() => setLightbox(null)}><button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close image"><X size={22} /></button><img src={lightbox} alt="Expanded Urban Piraeus Oasis render" onClick={(event) => event.stopPropagation()} /></div>}
     </main>
   );
 }

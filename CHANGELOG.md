@@ -1,5 +1,37 @@
 # Change Log
 
+## 2026-09-16 — Replace section 5 masterplan diagram with a single image
+
+### Changed
+
+- Replaced the interactive masterplan section (building selector, illustrated diagram, building-detail panel) with a single full-bleed image, at the client's request. Moved the client-committed file ("Masterplan Piraeus Gate.") into `client/public/images/piraeus-masterplan.jpg`.
+- The section keeps the same card-stack sticky/overlap treatment (rounded top corners, shadow, height matched to the hero) as the sections above it.
+
+### Removed
+
+- Removed the `buildings` array, `activeBuilding` state, and all masterplan diagram CSS (`.masterplan-section`, `.masterplan-layout`, `.building-block` and its position variants, `.masterplan-label`, `.building-detail`, etc).
+- Removed the `lightbox` state and modal, which had no remaining trigger once the masterplan building-detail panel was removed.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Fix Urban Piraeus Oasis pin coordinates
+
+### Fixed
+
+- The site marker on the section-4 map used an approximate placeholder coordinate. Updated to the client-confirmed coordinates (37.94734210830303, 23.656522176345334).
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Log map failures instead of failing silently
 
 ### Fixed

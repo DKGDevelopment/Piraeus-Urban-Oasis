@@ -67,15 +67,24 @@ Replaced the decorative fake-map illustration (`.map-card`, `.map-grid`, `.map-o
 
 - **`client/src/components/Map.tsx`** exports `MapView`, a thin wrapper that lazy-loads the Google Maps JavaScript API (`https://maps.googleapis.com/maps/api/js?key=...`) using `import.meta.env.VITE_GOOGLE_MAPS_API_KEY`, then renders a `google.maps.Map` into a full-size div. This file originally shipped as unused scaffold boilerplate wired to a third-party "Frontend Forge" proxy (`VITE_FRONTEND_FORGE_API_KEY`, `forge.butterfly-effect.dev`) that the client has no access to — it's been rewritten to hit Google's API directly with the client's own key. It was not used anywhere else in the app before this.
 - **The API key** lives only in the client's Vercel project env vars (and their own local `.env.local`, gitignored) — never hardcoded here, never pasted into chat. It's a `VITE_`-prefixed var, so it's intentionally bundled into the client JS; the actual security boundary is the HTTP-referrer domain restriction the client set on the key in Google Cloud Console, not secrecy. If the key is ever missing/invalid/blocked, `MapView` calls `onError`, and `LocationMap` falls back to `.location-map-fallback` (a plain gradient) so the section still renders cleanly instead of showing a broken/blank map. Every failure path (missing key, script load failure, `new google.maps.Map()` throwing) logs a `[LocationMap]`-prefixed `console.error` first — if the map ever shows the fallback in production, check the browser console for that log before guessing at the cause. `VITE_` env vars are baked in at **build time**, not read at runtime — the key must be set for the right Vercel Environment (Production/Preview) and a fresh deployment triggered after adding/changing it, or the bundle won't have it.
-- **`mapPoints`** in `Home.tsx` holds indicative (not survey-accurate) coordinates for the project site ("Urban Piraeus Oasis") plus the same four POIs used in the section-3 gallery (Piraeus Tower, Karaiskaki Stadium, Piraeus Port, Marina Zeas), for continuity between the two sections.
+- **`mapPoints`** in `Home.tsx`: the project site ("Urban Piraeus Oasis") uses client-confirmed coordinates (37.94734210830303, 23.656522176345334). The other four points are the same POIs used in the section-3 gallery (Piraeus Tower, Karaiskaki Stadium, Piraeus Port, Marina Zeas), for continuity between the two sections — their coordinates are still approximate, not survey-accurate.
 - **`mapStyle`** is a custom muted/desaturated `google.maps.MapTypeStyle[]` matching the site's sand/paper palette — don't swap in a default Google style, it'll clash.
 - The overlay panel (`.location-map-panel`, top-left, dark) shows the active location's name as a heading, a clickable list of the *other* locations, and an "Open Google Map" button (deep-links to `google.com/maps/search` for the active point). Clicking a name pans/zooms the map and re-styles markers (active = larger, terracotta; others = smaller, ink) — matches a client-provided reference screenshot's map/panel/selector layout.
+
+## Section 5 — masterplan
+
+Replaced the interactive masterplan diagram (building selector, `buildings` array, `.masterplan-section`/`.building-block`/`.masterplan-label` illustration) with a single full-bleed image, at the client's explicit direction ("remove everything and replace it with the image").
+
+- `images.masterplan` → `client/public/images/piraeus-masterplan.jpg`, moved from a file the client committed directly to `main` under "Masterplan Piraeus Gate."
+- The section is now just `.masterplan-image-section` containing one `<img>` — no text, no interactivity, no building data.
+- Keeps the same card-stack sticky/overlap treatment (top border-radius + shadow, height matching the hero at every breakpoint) as the sections above it.
+- The `buildings` array, `activeBuilding` state, and the `lightbox` state/modal (whose only trigger was the removed masterplan building-detail panel) were all dead code once this shipped — removed along with their CSS.
 
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.
 - Do not convert indicative investment language into guarantees or financial claims.
-- Keep the masterplan and residence selectors functional.
+- Keep the residence selector functional.
 - Keep the inquiry form as a frontend-only interaction unless an approved backend/CRM integration is requested.
 - Preserve the current WhatsApp and email CTA behavior unless the client provides confirmed contact details.
 - The `#overview` section (`.workplace-section`) is a work in progress being brought over from reference copy to real Piraeus content piece by piece, at the client's direction. The intro paragraphs, stats tiles (Gross buildable area 26,480 m² / Total floors 10 / To be delivered Q4 2028), and the large `.workplace-address` watermark ("60 Omiridou Skylitsi") are now Piraeus-specific; the tagline ("Every Morning Looks Different.") and the image overlay ("A Workplace" / "That Works") are still literal reference copy from the original screenshot and don't describe this project. Don't silently rewrite the remaining reference text to match the project — check with the client first, the same way this was flagged before implementing.
