@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Add address watermark to section 2
+
+### Added
+
+- Added a large, faint, bold sans-serif "60 Omiridou Skylitsi" watermark below the stats row in `.workplace-section`, bleeding edge-to-edge, matching the "250 Broadway" watermark in the client's reference screenshot. It gets naturally cropped by the next section sliding over it via the existing card-stack scroll effect.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Restyle section 2 stats numbers to match reference, then revert font
 
 ### Changed

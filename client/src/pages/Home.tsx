@@ -138,6 +138,7 @@ export default function Home() {
           <div><span>Total floors</span><strong>10</strong></div>
           <div><span>To be delivered</span><strong>Q4 2028</strong></div>
         </div>
+        <p className="workplace-address" aria-hidden="true">60 Omiridou Skylitsi</p>
       </section>
 
       <section className="ink-section vision-panel"><div className="section-kicker light"><span>01</span><span>The vision</span></div><div className="intro-grid"><div className="intro-title"><p className="eyebrow light">A new residential community</p><h2>Quality living,<br /><span>within reach.</span></h2></div><div className="intro-copy"><p className="large-copy">Urban Piraeus Oasis brings together contemporary architecture, different types of homes and shared spaces that make everyday life feel more complete.</p><p className="body-copy muted-light">The project is conceived as a connected residential destination within the broader, evolving Piraeus ecosystem — a place where landscape, amenities and access work together.</p><button className="text-link light-link" onClick={() => scrollTo("location")}>Why Piraeus <ArrowDownRight size={17} /></button></div></div><div className="outline-words" aria-hidden="true"><span>OASIS</span><span>OASIS</span></div></section>
