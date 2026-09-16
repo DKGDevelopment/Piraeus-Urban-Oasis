@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Improve contrast of section 2 image overlay text
+
+### Fixed
+
+- The "A Workplace" / "That Works" overlay text on the `.workplace-media` image was hard to read against the light building facade. Added a soft dark gradient band behind the text plus a stronger text-shadow for legibility.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Update section 2 stats tiles to Piraeus figures
 
 ### Changed
