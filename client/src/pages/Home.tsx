@@ -16,6 +16,17 @@ const images = {
   masterplan: "/images/piraeus-masterplan.jpg",
 };
 
+const areaGalleryImages = [
+  images.locationMarinaZea,
+  images.locationTower,
+  images.locationPort,
+  images.locationKaraiskaki,
+  images.courtyard,
+  images.lounge,
+  images.rooftop,
+  images.detail,
+];
+
 const residences = [
   { name: "Studios", size: "Indicative 35–48 sqm", copy: "Efficient, light-filled homes for a connected urban life.", image: images.detail },
   { name: "1-bedroom", size: "Indicative 52–68 sqm", copy: "A considered balance of privacy, storage and everyday flexibility.", image: images.lounge },
@@ -141,6 +152,8 @@ export default function Home() {
   const [activeResidence, setActiveResidence] = useState(0);
   const [locationSlide, setLocationSlide] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const areaScrollOuterRef = useRef<HTMLElement>(null);
+  const areaScrollTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -170,15 +183,37 @@ export default function Home() {
     const updateParallax = () => {
       const hero = document.querySelector<HTMLElement>(".hero-panel");
       if (hero) hero.style.setProperty("--hero-scroll", `${Math.min(window.scrollY * 0.12, 90)}px`);
+
+      const outer = areaScrollOuterRef.current;
+      const track = areaScrollTrackRef.current;
+      if (outer && track) {
+        const rect = outer.getBoundingClientRect();
+        const scrollableDistance = outer.offsetHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? Math.min(Math.max(-rect.top / scrollableDistance, 0), 1) : 0;
+        const maxOffset = Math.max(track.scrollWidth - window.innerWidth, 0);
+        track.style.transform = `translateX(-${progress * maxOffset}px)`;
+      }
+
       frame = 0;
     };
     const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(updateParallax); };
     window.addEventListener("scroll", onScroll, { passive: true });
-    updateParallax();
+
+    const sizeAreaScroll = () => {
+      const outer = areaScrollOuterRef.current;
+      const track = areaScrollTrackRef.current;
+      if (outer && track) outer.style.height = `${track.scrollWidth + window.innerHeight}px`;
+      updateParallax();
+    };
+    sizeAreaScroll();
+    window.addEventListener("resize", sizeAreaScroll);
+    window.addEventListener("load", sizeAreaScroll);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", sizeAreaScroll);
+      window.removeEventListener("load", sizeAreaScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -265,6 +300,21 @@ export default function Home() {
 
       <section id="masterplan" className="masterplan-image-section">
         <img src={images.masterplan} alt="Urban Piraeus Oasis masterplan" />
+      </section>
+
+      <section id="area-gallery" ref={areaScrollOuterRef} className="area-scroll-outer">
+        <div className="area-scroll-sticky">
+          <div className="area-scroll-copy">
+            <p>A place shaped by centuries of trade, industry and connection, Piraeus Gate carries a history that reaches back to the foundations of modern Piraeus. Once part of the city&rsquo;s industrial heart, the site has witnessed generations of movement, enterprise and change.</p>
+          </div>
+          <div className="area-scroll-track" ref={areaScrollTrackRef}>
+            {areaGalleryImages.map((src, index) => (
+              <div className="area-scroll-item" key={index}>
+                <img src={src} alt="Piraeus area" />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section id="residences" className="rhythm-section residence-section"><div className="section-kicker light"><span>04</span><span>The residences</span></div><div className="rhythm-head"><div><p className="eyebrow light">A home for every stage</p><h2>Find your<br /><em>right size.</em></h2></div><p className="body-copy muted-light">A range of residential typologies designed for accessible, contemporary urban living.</p></div><div className="space-switcher residence-switcher" role="tablist" aria-label="Explore residence types">{residences.map((item, index) => <button key={item.name} className={index === activeResidence ? "active" : ""} onClick={() => setActiveResidence(index)} role="tab" aria-selected={index === activeResidence}><span>0{index + 1}</span>{item.name}<ChevronRight size={15} /></button>)}</div><div className="space-feature residence-feature"><div className="space-image"><img key={residence.name} className="slide-media" src={residence.image} alt={`Indicative ${residence.name} residence interior`} /><span className="image-label">{residence.name} / Indicative</span></div><div className="space-copy"><p className="eyebrow light">{residence.size}</p><h3>{residence.name}</h3><p className="body-copy muted-light">{residence.copy}</p><div className="plan-placeholder"><div className="plan-room room-one" /><div className="plan-room room-two" /><div className="plan-room room-three" /><span>Indicative layout</span></div><p className="disclaimer light-disclaimer">Indicative layouts and specifications. Final availability and details are provided upon request.</p></div></div></section>

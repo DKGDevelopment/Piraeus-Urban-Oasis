@@ -1,5 +1,75 @@
 # Change Log
 
+## 2026-09-16 — Double the gallery thumbnail size
+
+### Changed
+
+- Doubled `.area-scroll-item` width/height (`clamp(110px, 10vw, 190px)`/`22%` → `clamp(220px, 20vw, 380px)`/`44%`) at the client's request. Still small/staggered, just bigger.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Revert gallery images to small, staggered thumbnails
+
+### Fixed
+
+- Misread an earlier note as "images too small" and enlarged them to near-full-bleed. The client's actual direction was the opposite: small thumbnail-sized images (~1/10 the section size), alternating top/bottom as they scroll. Reverted to small `.area-scroll-item`s with wide gaps and alternating `align-self` (odd = top, even = bottom) for the staggered look.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Fix gallery intro copy layout to match reference
+
+### Fixed
+
+- The Piraeus Gate history copy was laid out as two paragraphs in a two-column grid; the client's reference showed a single continuous paragraph, one column, at a larger size. Merged into one `<p>` and switched to a single-column block at the correct size/line-height.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Enlarge horizontal gallery images and add intro copy
+
+### Fixed
+
+- The horizontal-scroll gallery images were too small relative to the section (roughly 1:10 scale, wide gaps, reading as a marquee). Each image is now near-full-viewport-width with a tight 6px gap, matching the intended full-bleed feel.
+
+### Added
+
+- Added the client-provided intro copy about Piraeus Gate's history to the top of the section, in the site's serif display face (Cormorant Garamond) at a larger body size, matching a client-provided reference screenshot's typography.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Add scroll-locked horizontal image gallery after the masterplan
+
+### Added
+
+- New `#area-gallery` section directly after the masterplan: a horizontal image strip that scrolls sideways as the user scrolls vertically (sticky-pinned track, no wheel hijacking), releasing into the next section once it finishes. Matches the scroll mechanic from a client-provided reference, without the floor-number watermark/floor-plan thumbnail/caption elements from that reference (explicitly out of scope for now).
+- Currently uses existing site photos as placeholders; the client is providing their own images for this section next.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 5 masterplan diagram with a single image
 
 ### Changed

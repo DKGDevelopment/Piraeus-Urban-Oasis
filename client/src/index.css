@@ -261,6 +261,15 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
 .ghost-button { border: 1px solid rgba(255,255,255,.65); background: transparent; color: #fff; }
 .masterplan-image-section { position: relative; z-index: 1; height: 100vh; overflow: hidden; border-radius: 28px 28px 0 0; box-shadow: 0 -30px 60px rgba(0,0,0,.22); background: var(--mist); }
 .masterplan-image-section img { width: 100%; height: 100%; object-fit: cover; }
+.area-scroll-outer { position: relative; z-index: 1; background: var(--mist); border-radius: 28px 28px 0 0; box-shadow: 0 -30px 60px rgba(0,0,0,.22); }
+.area-scroll-sticky { position: sticky; top: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.area-scroll-copy { flex: 0 0 auto; padding: clamp(48px, 7vh, 90px) clamp(22px, 6vw, 90px) clamp(20px, 3vh, 40px); }
+.area-scroll-copy p { margin: 0; max-width: 1400px; font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.4; letter-spacing: -.005em; color: #2b2b2b; }
+.area-scroll-track { display: flex; align-items: center; flex: 1 1 auto; min-height: 0; gap: clamp(60px, 9vw, 160px); padding: 0 8vw; will-change: transform; }
+.area-scroll-item { flex: 0 0 auto; width: clamp(220px, 20vw, 380px); height: 44%; }
+.area-scroll-item:nth-child(odd) { align-self: flex-start; }
+.area-scroll-item:nth-child(even) { align-self: flex-end; }
+.area-scroll-item img { width: 100%; height: 100%; object-fit: cover; }
 .disclaimer { max-width: 850px; margin: 28px 0 0; color: rgba(27,42,39,.53); font-size: 10px; line-height: 1.5; }
 .residence-section { background: var(--olive); }
 .residence-section .rhythm-head { margin-top: 95px; }
@@ -282,6 +291,8 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
 
 @media (max-width: 800px) {
   .masterplan-image-section { height: calc(100vh - 66px); min-height: 480px; }
+  .area-scroll-sticky { height: calc(100vh - 66px); min-height: 480px; }
+  .area-scroll-copy { padding: 28px 22px 18px; }
   .investor-grid, .developer-grid, .contact-grid { grid-template-columns: 1fr; gap: 55px; }.investor-grid { margin-top: 78px; }.opportunity-list strong { font-size: 23px; }
   .rationale-head, .timeline-head { display: block; margin-top: 80px; }.rationale-head .body-copy, .timeline-head .body-copy { margin-top: 30px; }.rationale-grid { grid-template-columns: 1fr 1fr; gap: 15px; }.rationale-card { min-height: 210px; }.rationale-card h3 { margin-top: 38px; font-size: 23px; }
   .timeline { grid-template-columns: 1fr 1fr; gap: 35px 18px; border-top: 0; padding-top: 0; }.timeline-item { padding-top: 17px; border-top: 1px solid var(--border); }.timeline-item i { top: -5px; }.timeline-item span { margin-bottom: 20px; }
