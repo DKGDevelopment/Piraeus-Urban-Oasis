@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Center and widen the gallery intro copy
+
+### Changed
+
+- The Piraeus Gate history paragraph in `.area-scroll-copy` was left-aligned and capped to a 1400px column. Center-aligned it and removed the max-width so it spans side to side within the section's padding.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Fix Piraeus Tower/Karaiskaki/Port/Marina Zeas pin coordinates
 
 ### Fixed
