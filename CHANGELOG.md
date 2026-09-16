@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Fix gallery intro copy layout to match reference
+
+### Fixed
+
+- The Piraeus Gate history copy was laid out as two paragraphs in a two-column grid; the client's reference showed a single continuous paragraph, one column, at a larger size. Merged into one `<p>` and switched to a single-column block at the correct size/line-height.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Enlarge horizontal gallery images and add intro copy
 
 ### Fixed
