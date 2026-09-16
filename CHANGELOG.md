@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Log map failures instead of failing silently
+
+### Fixed
+
+- `MapView`'s failure paths (missing/invalid API key, script load failure, `google.maps.Map` construction throwing) previously called `onError` with no logging, so a broken map in production looked identical to a silent no-op — nothing in the console to diagnose it by. All three paths now log a `[LocationMap]`-prefixed `console.error` first.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Fix hero video bleeding through every section on scroll
 
 ### Fixed

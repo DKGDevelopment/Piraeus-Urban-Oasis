@@ -56,19 +56,25 @@ export function MapView({
   const init = usePersistFn(async () => {
     try {
       await loadMapScript();
-    } catch {
+    } catch (error) {
+      console.error("[LocationMap]", error instanceof Error ? error.message : error);
       onError?.();
       return;
     }
     if (!mapContainer.current || !window.google) return;
-    map.current = new window.google.maps.Map(mapContainer.current, {
-      zoom: initialZoom,
-      center: initialCenter,
-      disableDefaultUI: true,
-      zoomControl: true,
-      styles,
-    });
-    onMapReady?.(map.current);
+    try {
+      map.current = new window.google.maps.Map(mapContainer.current, {
+        zoom: initialZoom,
+        center: initialCenter,
+        disableDefaultUI: true,
+        zoomControl: true,
+        styles,
+      });
+      onMapReady?.(map.current);
+    } catch (error) {
+      console.error("[LocationMap] failed to initialize map", error);
+      onError?.();
+    }
   });
 
   useEffect(() => {
