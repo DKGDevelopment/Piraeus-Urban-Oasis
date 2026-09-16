@@ -22,6 +22,10 @@ The hero is intentionally minimal right now (per client direction, being rebuilt
 
 If you change header height (add/remove a row, resize the nav), update the `calc(100vh - ...)` value in `.hero-panel` (both the desktop rule and the `@media (max-width: 800px)` override) to match, or the hero will stop filling the full screen.
 
+**Card-stack scroll effect — do not reintroduce `overflow: hidden` on `.site-shell` (or any other ancestor of `.hero-panel`).** `position: sticky` breaks the moment any ancestor between the sticky element and the true document scroll root has `overflow` other than `visible`, even if that ancestor never actually overflows. This shipped broken for a while because `.site-shell` had `overflow: hidden` (originally added to hide an unrelated horizontal-overflow bug in the hero `<video>`). The fix: clip horizontal overflow locally on `.hero-panel` itself (`overflow: hidden` on the sticky element is fine — it's the element's *ancestors* that must stay `visible`), not on any wrapping container. If a future full-bleed element causes horizontal scroll, clip it at its own nearest non-ancestor-of-sticky wrapper, not on `html`, `body`, or `.site-shell`.
+
+Also: the scroll-reveal fade (`.motion-ready > section:not(.hero-panel)`, see Motion system below) animates `opacity` from 0 to 1, which — now that sticky actually works — would let the pinned hero (and earlier card-stack sections) show through card-stack sections mid-transition. `.workplace-section` and `.location-gallery` are excluded from the opacity fade (kept at `opacity: 1` always, transform-only reveal) for this reason. Any new card-stack section (border-radius top corners + box-shadow, sliding over the sticky hero) needs the same exclusion added to that override rule.
+
 ## Hero video
 
 The homepage hero uses the provided Bunny CDN public MP4:

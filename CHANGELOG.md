@@ -1,5 +1,20 @@
 # Change Log
 
+## 2026-09-16 — Fix card-stack scroll effect (was broken since it shipped)
+
+### Fixed
+
+- The section-1→section-2 (and section-2→section-3) "card sliding over another card" scroll effect wasn't actually working: `.site-shell` had `overflow: hidden`, and any ancestor of a `position: sticky` element with non-`visible` overflow disables its stickiness. Removed that rule.
+- That `overflow: hidden` had been silently hiding an unrelated bug: the hero `<video>` renders ~32px wider than its container (an `object-fit: cover` sizing quirk on absolutely-positioned `<video>`), causing horizontal page overflow once the ancestor clipping was removed. Fixed at the source by clipping locally on `.hero-panel` itself instead (safe — overflow on the sticky element doesn't affect its own positioning, only on its ancestors does).
+- With sticky genuinely working, the existing scroll-reveal fade-in (opacity 0 → 1) on `.workplace-section` and `.location-gallery` briefly let the pinned hero show through mid-transition. Excluded both from the opacity fade (kept always-opaque, transform-only reveal) so the card-stack effect reads as a crisp opaque slide, not a ghosted cross-fade.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 3 gallery dots with a name-list nav
 
 ### Changed
