@@ -1,11 +1,12 @@
 # Change Log
 
-## 2026-09-16 — Restyle section 2 stats numbers to match reference
+## 2026-09-16 — Restyle section 2 stats numbers to match reference, then revert font
 
 ### Changed
 
 - Switched the `.workplace-stats` value font from the site's serif display face to a bold sans-serif, matching the client's reference screenshot.
 - Added thin vertical divider lines between the three stat tiles, and widened the "To be delivered" column so "Q4 2028" stays on one line.
+- Client didn't like the sans-serif swap, so reverted the stat values back to the site's serif display face. Kept the divider lines and the nowrap/column-width fix.
 
 ### Validation
 
