@@ -80,6 +80,15 @@ Replaced the interactive masterplan diagram (building selector, `buildings` arra
 - Keeps the same card-stack sticky/overlap treatment (top border-radius + shadow, height matching the hero at every breakpoint) as the sections above it.
 - The `buildings` array, `activeBuilding` state, and the `lightbox` state/modal (whose only trigger was the removed masterplan building-detail panel) were all dead code once this shipped — removed along with their CSS.
 
+## Section between masterplan and residences — scroll-locked horizontal gallery
+
+Added `#area-gallery` (`.area-scroll-outer`) directly after the masterplan section, at the client's request for a horizontal-scrolling image strip (reference: a "02 Floor" style gallery layout). Scope was explicitly narrowed by the client to just the scroll mechanic — no floor-number watermark, no floor-plan thumbnail, no caption text.
+
+- Mechanic: `.area-scroll-outer` is a tall wrapper (height set in JS to `track.scrollWidth + window.innerHeight`, giving a ~1:1 scroll-to-translate feel) containing a `position: sticky` `.area-scroll-sticky` (pinned full-viewport while its parent scrolls underneath it) wrapping `.area-scroll-track`, a flex row of images. The same scroll listener that drives the hero parallax (`Home.tsx`, in the big `useEffect`) also computes `progress = -outer.getBoundingClientRect().top / (outer.offsetHeight - innerHeight)` each frame and sets `track.style.transform = translateX(-progress * maxOffset)`. Once the track finishes translating, normal vertical scroll continues into the next section — no wheel-event hijacking, no `preventDefault`.
+- `outer.style.height` is (re)computed on mount, on `resize`, and on `load` (images can change layout after paint) — keep that in sync if the item count or width changes.
+- `areaGalleryImages` in `Home.tsx` currently reuses existing site photos (`locationMarinaZea`/`locationTower`/`locationPort`/`locationKaraiskaki`/`courtyard`/`lounge`/`rooftop`/`detail`) as placeholders — the client is providing their own images for this section next; swap the array once those are committed, following the same repo-root-commit → `client/public/images/` move pattern used elsewhere.
+- Keeps the same card-stack sticky/overlap treatment (top border-radius + shadow) as the surrounding full-bleed sections. Its own internal `position: sticky` is independent of that — don't confuse the two.
+
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.

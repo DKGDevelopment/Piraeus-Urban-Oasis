@@ -1,5 +1,19 @@
 # Change Log
 
+## 2026-09-16 — Add scroll-locked horizontal image gallery after the masterplan
+
+### Added
+
+- New `#area-gallery` section directly after the masterplan: a horizontal image strip that scrolls sideways as the user scrolls vertically (sticky-pinned track, no wheel hijacking), releasing into the next section once it finishes. Matches the scroll mechanic from a client-provided reference, without the floor-number watermark/floor-plan thumbnail/caption elements from that reference (explicitly out of scope for now).
+- Currently uses existing site photos as placeholders; the client is providing their own images for this section next.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 5 masterplan diagram with a single image
 
 ### Changed

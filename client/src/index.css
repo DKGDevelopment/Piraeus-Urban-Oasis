@@ -261,6 +261,11 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
 .ghost-button { border: 1px solid rgba(255,255,255,.65); background: transparent; color: #fff; }
 .masterplan-image-section { position: relative; z-index: 1; height: 100vh; overflow: hidden; border-radius: 28px 28px 0 0; box-shadow: 0 -30px 60px rgba(0,0,0,.22); background: var(--mist); }
 .masterplan-image-section img { width: 100%; height: 100%; object-fit: cover; }
+.area-scroll-outer { position: relative; z-index: 1; background: var(--mist); border-radius: 28px 28px 0 0; box-shadow: 0 -30px 60px rgba(0,0,0,.22); }
+.area-scroll-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.area-scroll-track { display: flex; align-items: center; height: 100%; gap: 18px; padding: 0 18px; will-change: transform; }
+.area-scroll-item { flex: 0 0 auto; width: min(58vw, 720px); height: 78%; }
+.area-scroll-item img { width: 100%; height: 100%; object-fit: cover; }
 .disclaimer { max-width: 850px; margin: 28px 0 0; color: rgba(27,42,39,.53); font-size: 10px; line-height: 1.5; }
 .residence-section { background: var(--olive); }
 .residence-section .rhythm-head { margin-top: 95px; }
