@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Enlarge section 2 address watermark
+
+### Changed
+
+- Increased the `.workplace-address` font size (~10.3vw, capped at 170px) so "60 Omiridou Skylitsi" spans edge-to-edge at both narrow and wide desktop widths, without the last letter clipping off.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Add address watermark to section 2
 
 ### Added
