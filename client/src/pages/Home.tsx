@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronRight, Compass, Leaf, Menu, X } from "lucide-react";
+import { ArrowUpRight, Compass, Leaf, Menu, X } from "lucide-react";
 import { MapView } from "@/components/Map";
 
 const images = {
@@ -31,13 +31,6 @@ const areaGalleryImages = [
   images.oldPiraeus05,
   images.oldPiraeus06,
   images.oldPiraeus07,
-];
-
-const residences = [
-  { name: "Studios", size: "Indicative 35–48 sqm", copy: "Efficient, light-filled homes for a connected urban life.", image: images.detail },
-  { name: "1-bedroom", size: "Indicative 52–68 sqm", copy: "A considered balance of privacy, storage and everyday flexibility.", image: images.lounge },
-  { name: "2-bedroom", size: "Indicative 78–96 sqm", copy: "Generous shared living areas designed to adapt over time.", image: images.courtyard },
-  { name: "3-bedroom", size: "Indicative 105+ sqm", copy: "Larger residences with room for family life, guests and work.", image: images.rooftop },
 ];
 
 const rationale = [
@@ -155,7 +148,6 @@ function LocationMap() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeResidence, setActiveResidence] = useState(0);
   const [locationSlide, setLocationSlide] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const areaScrollOuterRef = useRef<HTMLElement>(null);
@@ -229,8 +221,6 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const residence = residences[activeResidence];
-
   return (
     <main className="site-shell">
       <header className={`site-header ${menuOpen ? "is-open" : ""}`}>
@@ -242,11 +232,11 @@ export default function Home() {
         <div className="site-nav">
           <button className="brand-mark" onClick={() => scrollTo("top")} aria-label="Back to top"><span className="brand-monogram">PU</span><span className="brand-name">Urban Piraeus<br />Oasis</span></button>
           <nav className="desktop-nav" aria-label="Primary navigation">
-            <button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("residences")}>Residences</button><button onClick={() => scrollTo("investors")}>Investors</button><button onClick={() => scrollTo("overview")}>Gallery</button>
+            <button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("investors")}>Investors</button><button onClick={() => scrollTo("overview")}>Gallery</button>
           </nav>
           <button className="nav-cta" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={15} /></button>
           <button className="menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-          {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "residences", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
+          {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
         </div>
       </header>
 
@@ -256,7 +246,7 @@ export default function Home() {
           <source src="https://piraeusgate.b-cdn.net/kling_20260915_VIDEO__4577_0.mp4" type="video/mp4" />
         </video>
         <div className="hero-copy">
-          <h1>Where Business<br />Comes Together</h1>
+          <h1>Where People<br />Come Together</h1>
         </div>
       </section>
 
@@ -274,9 +264,9 @@ export default function Home() {
         <div className="workplace-media">
           <img src={images.workplace} alt="Urban Piraeus Oasis building" />
           <div className="workplace-media-overlay">
-            <span>A Workplace</span>
+            <span>A community</span>
             <span className="workplace-dot" aria-hidden="true" />
-            <span>That Works</span>
+            <span>that works</span>
           </div>
         </div>
         <div className="workplace-stats">
@@ -323,15 +313,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="residences" className="rhythm-section residence-section"><div className="section-kicker light"><span>04</span><span>The residences</span></div><div className="rhythm-head"><div><p className="eyebrow light">A home for every stage</p><h2>Find your<br /><em>right size.</em></h2></div><p className="body-copy muted-light">A range of residential typologies designed for accessible, contemporary urban living.</p></div><div className="space-switcher residence-switcher" role="tablist" aria-label="Explore residence types">{residences.map((item, index) => <button key={item.name} className={index === activeResidence ? "active" : ""} onClick={() => setActiveResidence(index)} role="tab" aria-selected={index === activeResidence}><span>0{index + 1}</span>{item.name}<ChevronRight size={15} /></button>)}</div><div className="space-feature residence-feature"><div className="space-image"><img key={residence.name} className="slide-media" src={residence.image} alt={`Indicative ${residence.name} residence interior`} /><span className="image-label">{residence.name} / Indicative</span></div><div className="space-copy"><p className="eyebrow light">{residence.size}</p><h3>{residence.name}</h3><p className="body-copy muted-light">{residence.copy}</p><div className="plan-placeholder"><div className="plan-room room-one" /><div className="plan-room room-two" /><div className="plan-room room-three" /><span>Indicative layout</span></div><p className="disclaimer light-disclaimer">Indicative layouts and specifications. Final availability and details are provided upon request.</p></div></div></section>
+      <section id="investors" className="investor-section"><div className="section-kicker"><span>04</span><span>Initial investor allocation</span></div><div className="investor-grid"><div><p className="eyebrow">A limited early-investor opportunity</p><h2>Enter early.<br /><em>Think longer.</em></h2><p className="large-copy dark-copy">Approximately 2,500 sqm of selected residential inventory is being made available through a limited network of partners.</p><button className="solid-button terracotta-button" onClick={() => scrollTo("contact")}>Request investor information <ArrowUpRight size={16} /></button></div><div className="opportunity-list"><div><span>01</span><strong>Preferential pre-launch entry pricing</strong><p>Indicative pricing positioned ahead of later public phases, subject to final terms.</p></div><div><span>02</span><strong>Hold for potential rental income</strong><p>A possible strategy for investors seeking a longer-term residential holding.</p></div><div><span>03</span><strong>Potential for later-stage upside</strong><p>Any appreciation is market-dependent and not guaranteed.</p></div><div><span>04</span><strong>Selected inventory, limited release</strong><p>Detailed terms and specific inventory are provided upon request.</p></div></div></div><p className="disclaimer">This is an indicative opportunity summary, not an offer, guarantee or financial advice. Availability, pricing, rental performance and future value are subject to market conditions, final documentation and applicable approvals.</p></section>
 
-      <section id="investors" className="investor-section"><div className="section-kicker"><span>05</span><span>Initial investor allocation</span></div><div className="investor-grid"><div><p className="eyebrow">A limited early-investor opportunity</p><h2>Enter early.<br /><em>Think longer.</em></h2><p className="large-copy dark-copy">Approximately 2,500 sqm of selected residential inventory is being made available through a limited network of partners.</p><button className="solid-button terracotta-button" onClick={() => scrollTo("contact")}>Request investor information <ArrowUpRight size={16} /></button></div><div className="opportunity-list"><div><span>01</span><strong>Preferential pre-launch entry pricing</strong><p>Indicative pricing positioned ahead of later public phases, subject to final terms.</p></div><div><span>02</span><strong>Hold for potential rental income</strong><p>A possible strategy for investors seeking a longer-term residential holding.</p></div><div><span>03</span><strong>Potential for later-stage upside</strong><p>Any appreciation is market-dependent and not guaranteed.</p></div><div><span>04</span><strong>Selected inventory, limited release</strong><p>Detailed terms and specific inventory are provided upon request.</p></div></div></div><p className="disclaimer">This is an indicative opportunity summary, not an offer, guarantee or financial advice. Availability, pricing, rental performance and future value are subject to market conditions, final documentation and applicable approvals.</p></section>
+      <section className="rationale-section"><div className="section-kicker light"><span>05</span><span>Investment rationale</span></div><div className="rationale-head"><h2>One project.<br /><em>Several paths.</em></h2><p className="body-copy muted-light">A clear, disciplined thesis for engaging with a large-scale residential development at an early stage.</p></div><div className="rationale-grid">{rationale.map(([number, title, copy]) => <div className="rationale-card" key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></div>)}</div></section>
 
-      <section className="rationale-section"><div className="section-kicker light"><span>06</span><span>Investment rationale</span></div><div className="rationale-head"><h2>One project.<br /><em>Several paths.</em></h2><p className="body-copy muted-light">A clear, disciplined thesis for engaging with a large-scale residential development at an early stage.</p></div><div className="rationale-grid">{rationale.map(([number, title, copy]) => <div className="rationale-card" key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></div>)}</div></section>
+      <section className="timeline-section"><div className="section-kicker"><span>06</span><span>Development status</span></div><div className="timeline-head"><div><p className="eyebrow">Indicative timeline</p><h2>From study<br /><em>to delivery.</em></h2></div><p className="body-copy dark-copy">The project is being matured in phases. Dates and milestones will be updated as they are confirmed.</p></div><div className="timeline">{timeline.map((item, index) => <div className={`timeline-item ${index === 0 ? "complete" : ""}`} key={item}><span>{String(index + 1).padStart(2, "0")}</span><i /><strong>{item}</strong><small>{index === 0 ? "Current status" : "Indicative milestone"}</small></div>)}</div></section>
 
-      <section className="timeline-section"><div className="section-kicker"><span>07</span><span>Development status</span></div><div className="timeline-head"><div><p className="eyebrow">Indicative timeline</p><h2>From study<br /><em>to delivery.</em></h2></div><p className="body-copy dark-copy">The project is being matured in phases. Dates and milestones will be updated as they are confirmed.</p></div><div className="timeline">{timeline.map((item, index) => <div className={`timeline-item ${index === 0 ? "complete" : ""}`} key={item}><span>{String(index + 1).padStart(2, "0")}</span><i /><strong>{item}</strong><small>{index === 0 ? "Current status" : "Indicative milestone"}</small></div>)}</div></section>
-
-      <section className="developer-section"><div className="section-kicker light"><span>08</span><span>About DKG Development</span></div><div className="developer-grid"><div><p className="eyebrow light">The team behind the opportunity</p><h2>Built on<br /><em>delivery.</em></h2></div><div><p className="large-copy">DKG Development is building a platform for residential, hospitality and investment opportunities, with a focus on thoughtful places and long-term value creation.</p><p className="body-copy muted-light">The developer profile, completed and ongoing projects, total area under development and representative portfolio will be expanded here with confirmed corporate information.</p><button className="text-link light-link" onClick={() => scrollTo("contact")}>Request the developer profile <ArrowUpRight size={17} /></button></div></div><div className="developer-pillars"><div><Leaf size={18} /><span>Residential</span></div><div><Compass size={18} /><span>Hospitality</span></div><div><ArrowUpRight size={18} /><span>Investment</span></div><div><span className="pillar-plus">+</span><span>Greece / International network</span></div></div></section>
+      <section className="developer-section"><div className="section-kicker light"><span>07</span><span>About DKG Development</span></div><div className="developer-grid"><div><p className="eyebrow light">The team behind the opportunity</p><h2>Built on<br /><em>delivery.</em></h2></div><div><p className="large-copy">DKG Development is building a platform for residential, hospitality and investment opportunities, with a focus on thoughtful places and long-term value creation.</p><p className="body-copy muted-light">The developer profile, completed and ongoing projects, total area under development and representative portfolio will be expanded here with confirmed corporate information.</p><button className="text-link light-link" onClick={() => scrollTo("contact")}>Request the developer profile <ArrowUpRight size={17} /></button></div></div><div className="developer-pillars"><div><Leaf size={18} /><span>Residential</span></div><div><Compass size={18} /><span>Hospitality</span></div><div><ArrowUpRight size={18} /><span>Investment</span></div><div><span className="pillar-plus">+</span><span>Greece / International network</span></div></div></section>
 
       <section id="contact" className="contact-section contact-investor"><div className="contact-mark"><span>PU</span><Leaf size={20} /></div><div className="contact-grid"><div className="contact-content"><p className="eyebrow light">Initial investor allocation</p><h2>Interested in<br /><em>the opportunity?</em></h2><p className="large-copy muted-light">Share a few details and a member of the team will come back to you with the relevant information.</p><a className="contact-link" href="https://wa.me/306900000000" target="_blank" rel="noreferrer">Contact via WhatsApp <ArrowUpRight size={18} /></a></div><form className="investor-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}><div className="form-row"><label>Name<input required name="name" placeholder="Your name" /></label><label>Company<input name="company" placeholder="Company name" /></label></div><div className="form-row"><label>Country / market<input name="country" placeholder="Country or market" /></label><label>Email<input required type="email" name="email" placeholder="you@company.com" /></label></div><div className="form-row"><label>Phone / WhatsApp<input name="phone" placeholder="+30 ..." /></label><label>Investor profile<select name="profile" defaultValue=""><option value="" disabled>Select one</option><option>Private investor</option><option>Family office</option><option>Institutional investor</option><option>Partner / advisor</option></select></label></div><label>Indicative interest<textarea name="message" rows={3} placeholder="Tell us what you would like to explore" /></label><div className="form-actions"><button type="submit" className="solid-button">{submitted ? "Request received" : "Request further information"} <ArrowUpRight size={16} /></button><button type="button" className="form-link" onClick={() => window.location.href = "mailto:investors@urbanpiraeusoasis.com"}>Schedule a call</button></div>{submitted && <p className="form-success">Thank you. Your request has been captured for the project team.</p>}<p className="form-note">Your details will be shared with the designated project contact and relevant CRM workflow.</p></form></div><div className="contact-footer"><span>UPO — 01</span><span>© 2026 Urban Piraeus Oasis</span><span>Privacy / Terms</span></div></section>
     </main>
