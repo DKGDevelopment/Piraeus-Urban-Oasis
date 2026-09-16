@@ -1,5 +1,80 @@
 # Change Log
 
+## 2026-09-16 — Log map failures instead of failing silently
+
+### Fixed
+
+- `MapView`'s failure paths (missing/invalid API key, script load failure, `google.maps.Map` construction throwing) previously called `onError` with no logging, so a broken map in production looked identical to a silent no-op — nothing in the console to diagnose it by. All three paths now log a `[LocationMap]`-prefixed `console.error` first.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Fix hero video bleeding through every section on scroll
+
+### Fixed
+
+- The sticky hero stays pinned behind the entire rest of the page (its containing block spans the whole document), so the scroll-reveal fade-in (opacity 0 → 1) was letting the hero show/play through *every* section's entrance transition, not just the three sections patched for this earlier. Removed the opacity animation from the reveal entirely (transform-only slide-up now, site-wide) so no section can ever show the hero through it.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Restyle section 2 intro paragraphs and widen the text column
+
+### Changed
+
+- `.workplace-copy p` now uses bold sans-serif (was regular-weight body copy) at a larger size, matching a client-provided reference screenshot.
+- Widened the intro paragraph column from a 620px cap to 38% of the section width, so its right edge lines up with the left edge of the image panel below it (which is 62% wide).
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Replace section 4 with an interactive Google Map
+
+### Added
+
+- Replaced the decorative fake-map illustration and "Why Piraeus" text column in section 4 with `LocationMap`: a full-viewport-height, custom-styled interactive Google Map (client-provided reference layout) with a dark overlay panel — active location name, a clickable list of the other locations, and an "Open Google Map" button. Clicking a name pans/zooms the map and re-highlights the marker.
+- Reuses the four section-3 gallery locations (Piraeus Tower, Karaiskaki Stadium, Piraeus Port, Marina Zeas) plus the project site itself, with indicative coordinates.
+- Rewrote the previously-unused `client/src/components/Map.tsx` scaffold component (`MapView`) to load the Google Maps JS API directly with the client's own `VITE_GOOGLE_MAPS_API_KEY`, instead of the inert third-party "Frontend Forge" proxy it shipped wired to.
+- Falls back to a plain gradient block if the API key is missing/invalid, rather than a broken map.
+
+### Fixed
+
+- The section-3 (`.location-gallery`) and section-4 (`.location-map-section`) full-bleed heights on mobile (`82vh`) were shorter than the sticky hero's own height (`calc(100vh - 66px)`), letting the hero peek out below them. Both now use the identical formula as the hero so they fully cover it at every breakpoint.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+## 2026-09-16 — Fix card-stack scroll effect (was broken since it shipped)
+
+### Fixed
+
+- The section-1→section-2 (and section-2→section-3) "card sliding over another card" scroll effect wasn't actually working: `.site-shell` had `overflow: hidden`, and any ancestor of a `position: sticky` element with non-`visible` overflow disables its stickiness. Removed that rule.
+- That `overflow: hidden` had been silently hiding an unrelated bug: the hero `<video>` renders ~32px wider than its container (an `object-fit: cover` sizing quirk on absolutely-positioned `<video>`), causing horizontal page overflow once the ancestor clipping was removed. Fixed at the source by clipping locally on `.hero-panel` itself instead (safe — overflow on the sticky element doesn't affect its own positioning, only on its ancestors does).
+- With sticky genuinely working, the existing scroll-reveal fade-in (opacity 0 → 1) on `.workplace-section` and `.location-gallery` briefly let the pinned hero show through mid-transition. Excluded both from the opacity fade (kept always-opaque, transform-only reveal) so the card-stack effect reads as a crisp opaque slide, not a ghosted cross-fade.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 3 gallery dots with a name-list nav
 
 ### Changed

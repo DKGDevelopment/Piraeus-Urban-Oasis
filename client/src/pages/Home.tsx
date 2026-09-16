@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronRight, Compass, Leaf, Menu, X } from "lucide-react";
+import { MapView } from "@/components/Map";
 
 const images = {
   hero: "/images/piraeus-hero.jpg",
@@ -46,6 +47,102 @@ const locationImages = [
   { src: images.locationTower, alt: "Piraeus Tower", label: "Piraeus Tower" },
   { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus", label: "Karaiskaki Stadium" },
 ];
+
+// Indicative coordinates — approximate Piraeus landmarks, not survey-accurate.
+const mapPoints = [
+  { name: "Urban Piraeus Oasis", lat: 37.9421, lng: 23.6462, isSite: true },
+  { name: "Piraeus Tower", lat: 37.9428, lng: 23.6464 },
+  { name: "Karaiskaki Stadium", lat: 37.9486, lng: 23.6428 },
+  { name: "Piraeus Port", lat: 37.9382, lng: 23.6459 },
+  { name: "Marina Zeas", lat: 37.933, lng: 23.6482 },
+];
+
+// A muted, desaturated custom style so the map reads as part of the site's editorial palette.
+const mapStyle = [
+  { elementType: "geometry", stylers: [{ color: "#f0ece4" }] },
+  { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+  { elementType: "labels.text.fill", stylers: [{ color: "#8a8f86" }] },
+  { elementType: "labels.text.stroke", stylers: [{ color: "#f0ece4" }] },
+  { featureType: "administrative", elementType: "geometry", stylers: [{ visibility: "off" }] },
+  { featureType: "poi", stylers: [{ visibility: "off" }] },
+  { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
+  { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] },
+  { featureType: "road.arterial", elementType: "geometry", stylers: [{ color: "#f7f3eb" }] },
+  { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#e5ddcc" }] },
+  { featureType: "transit", stylers: [{ visibility: "off" }] },
+  { featureType: "water", elementType: "geometry", stylers: [{ color: "#c7d4d1" }] },
+];
+
+function LocationMap() {
+  const [active, setActive] = useState(0);
+  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  const mapInstance = useRef<google.maps.Map | null>(null);
+  const markers = useRef<google.maps.Marker[]>([]);
+
+  const markerIcon = (index: number, isActive: boolean): google.maps.Symbol => ({
+    path: google.maps.SymbolPath.CIRCLE,
+    scale: mapPoints[index].isSite ? 15 : 11,
+    fillColor: isActive || mapPoints[index].isSite ? "#c76242" : "#1b2a27",
+    fillOpacity: 1,
+    strokeColor: "#fff",
+    strokeWeight: 2,
+  });
+
+  const handleMapReady = (map: google.maps.Map) => {
+    mapInstance.current = map;
+    markers.current = mapPoints.map((point, index) => {
+      const marker = new google.maps.Marker({
+        position: { lat: point.lat, lng: point.lng },
+        map,
+        label: { text: point.isSite ? "PU" : String(index + 1), color: "#fff", fontSize: "11px", fontWeight: "700" },
+        icon: markerIcon(index, index === active),
+      });
+      marker.addListener("click", () => setActive(index));
+      return marker;
+    });
+    setStatus("ready");
+  };
+
+  useEffect(() => {
+    if (status !== "ready") return;
+    const point = mapPoints[active];
+    mapInstance.current?.panTo({ lat: point.lat, lng: point.lng });
+    mapInstance.current?.setZoom(16);
+    markers.current.forEach((marker, index) => marker.setIcon(markerIcon(index, index === active)));
+  }, [active, status]);
+
+  const activePoint = mapPoints[active];
+
+  return (
+    <section id="location" className="location-map-section">
+      <MapView
+        className="location-map-canvas"
+        initialCenter={{ lat: mapPoints[0].lat, lng: mapPoints[0].lng }}
+        styles={mapStyle}
+        onMapReady={handleMapReady}
+        onError={() => setStatus("error")}
+      />
+      {status !== "ready" && <div className="location-map-fallback" aria-hidden="true" />}
+      <div className="location-map-panel">
+        <span className="location-map-panel-label">Map</span>
+        <h3 className="location-map-panel-title">{activePoint.name}</h3>
+        <div className="location-map-panel-list">
+          {mapPoints.map((point, index) => index !== active && (
+            <button key={point.name} onClick={() => setActive(index)}>{point.name}</button>
+          ))}
+        </div>
+        <a
+          className="location-map-panel-cta"
+          href={`https://www.google.com/maps/search/?api=1&query=${activePoint.lat},${activePoint.lng}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Compass size={14} /> Open Google Map
+        </a>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -175,7 +272,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="location" className="location-section location-investor"><div className="location-copy"><div className="section-kicker"><span>02</span><span>Why Piraeus</span></div><p className="eyebrow">The location</p><h2>Connected to<br /><em>what’s next.</em></h2><p className="large-copy dark-copy">Piraeus is a city in transition — a port, a mobility hub and an increasingly important part of the wider Athens urban story.</p><div className="reasons-list"><div><span>01</span><strong>Port city momentum</strong><p>A major gateway with a distinct local identity and an expanding economic ecosystem.</p></div><div><span>02</span><strong>New urban life</strong><p>Residential, hospitality and public-realm investment are reshaping the experience of the city.</p></div><div><span>03</span><strong>Mobility by nature</strong><p>A connected metropolitan location with access to the port, rail and wider Athens network.</p></div><div><span>04</span><strong>Everyday relevance</strong><p>A real city with services, culture, education and the Aegean at its edge.</p></div></div></div><div className="map-card location-map" aria-label="Indicative map of Urban Piraeus Oasis and surrounding points"><div className="map-grid" /><div className="map-orbit orbit-one" /><div className="map-orbit orbit-two" /><div className="map-pin"><span>PU</span><i /></div><div className="map-labels"><span className="label-oasis">Project site</span><span className="label-port">Piraeus Port</span><span className="label-sea">Aegean Sea</span><span className="label-metro">Metro / rail</span><span className="label-athens">Athens</span><span className="label-airport">Airport</span></div><div className="map-compass"><Compass size={18} /><span>N</span></div><p className="map-note">Indicative location diagram.<br />Distances and travel times to be confirmed.</p></div></section>
+      <LocationMap />
 
       <section id="masterplan" className="masterplan-section"><div className="section-kicker"><span>03</span><span>Masterplan</span></div><div className="gallery-head"><div><p className="eyebrow">Seven buildings / one ecosystem</p><h2>Explore the<br /><em>masterplan.</em></h2></div><p className="body-copy">An indicative overview for early conversations. Building mix, floors, layouts and phasing remain subject to final approvals and availability.</p></div><div className="masterplan-layout"><div className="masterplan-visual"><div className="masterplan-water" /><div className="masterplan-road road-one" /><div className="masterplan-road road-two" /><div className="masterplan-park" /><div className="building-cluster">{buildings.map((item, index) => <button key={item.id} className={`building-block building-${item.id.toLowerCase()} ${index === activeBuilding ? "active" : ""}`} onClick={() => setActiveBuilding(index)} aria-label={`Explore Building ${item.id}`}>{item.id}</button>)}</div><span className="masterplan-label label-center">Central landscape</span><span className="masterplan-label label-south">Piraeus / waterfront direction</span></div><div className="building-detail"><div className="building-detail-image"><img key={building.id} className="slide-media" src={building.image} alt={`Indicative render for Building ${building.id}`} /><span className="image-label">Building {building.id} / Indicative</span></div><p className="eyebrow">Building {building.id} · {building.phase}</p><h3>{building.detail}</h3><div className="building-specs"><div><span>Height</span><strong>{building.floors}</strong></div><div><span>Unit mix</span><strong>{building.mix}</strong></div></div><button className="text-link" onClick={() => setLightbox(building.image)}>View indicative render <ArrowUpRight size={17} /></button></div></div><p className="disclaimer">Indicative masterplan and building information. Final building count, unit mix, specifications and phasing are subject to design development, approvals and availability.</p></section>
 
