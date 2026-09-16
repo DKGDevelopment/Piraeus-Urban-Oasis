@@ -95,6 +95,10 @@ Added `#area-gallery` (`.area-scroll-outer`) directly after the masterplan secti
 
 The `#residences` section ("Find your right size.", a studio/1-bed/2-bed/3-bed switcher with an indicative floor-plan placeholder) was removed entirely at the client's request. Removed along with it: the `residences` array, `activeResidence` state, the `ChevronRight` icon import (had no other use), the nav links to `#residences` (desktop + mobile), and all of its CSS (`.rhythm-section`, `.rhythm-head`, `.space-switcher`, `.space-feature`, `.space-image`, `.space-copy`, `.residence-section`, `.plan-placeholder`, `.plan-room`, `.light-disclaimer`, the `.slide-media`/`.space-copy h3` reveal animations and their keyframes). The remaining `.section-kicker` numbers (investors, rationale, timeline, developer) were renumbered down by one (05→04, 06→05, 07→06, 08→07) to stay sequential. Don't re-add a residence typology selector without the client asking again.
 
+## Section 7 (removed) — about DKG Development
+
+The `.developer-section` ("About DKG Development", "Built on delivery.", the four-pillar Residential/Hospitality/Investment/Greece-network row) was removed entirely at the client's request, directly before `#contact`. Removed along with it: all of its CSS (`.developer-section`, `.developer-grid`, `.developer-pillars`, `.pillar-plus`) plus the now-dead `.text-link`/`.light-link` utility classes (had no other use). No section kicker renumbering was needed since it was the last numbered section before contact. Don't re-add a developer/about section without the client asking again.
+
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.

@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Remove the "About DKG Development" section
+
+### Removed
+
+- Removed `.developer-section` ("About DKG Development", "Built on delivery.", the four-pillar row) entirely at the client's request, along with its dedicated CSS (`.developer-section`, `.developer-grid`, `.developer-pillars`, `.pillar-plus`) and the now-unused `.text-link`/`.light-link` utility classes.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Remove the residences section and update hero/overview copy
 
 ### Removed
