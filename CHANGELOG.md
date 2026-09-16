@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Replace section 3 gallery dots with a name-list nav
+
+### Changed
+
+- Replaced the small dot indicators at the bottom of the location gallery with a stacked, bottom-center list of all four location names (clickable). The active slide's name is bold, white, and larger; the others are dim, matching a client-provided reference screenshot.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Add location name overlay labels to section 3 gallery
 
 ### Added

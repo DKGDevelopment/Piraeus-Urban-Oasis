@@ -168,9 +168,9 @@ export default function Home() {
         {locationImages.map((image, index) => (
           <p key={image.label} className={`location-gallery-label ${index === locationSlide ? "active" : ""}`}>{image.label}</p>
         ))}
-        <div className="location-gallery-dots">
+        <div className="location-gallery-nav">
           {locationImages.map((image, index) => (
-            <button key={image.src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)} aria-label={`Show ${image.alt}`} />
+            <button key={image.src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)}>{image.label}</button>
           ))}
         </div>
       </section>
