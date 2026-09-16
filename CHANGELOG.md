@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Fix Urban Piraeus Oasis pin coordinates
+
+### Fixed
+
+- The site marker on the section-4 map used an approximate placeholder coordinate. Updated to the client-confirmed coordinates (37.94734210830303, 23.656522176345334).
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Log map failures instead of failing silently
 
 ### Fixed

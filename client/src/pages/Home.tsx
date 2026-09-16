@@ -48,9 +48,10 @@ const locationImages = [
   { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus", label: "Karaiskaki Stadium" },
 ];
 
-// Indicative coordinates — approximate Piraeus landmarks, not survey-accurate.
+// Urban Piraeus Oasis uses the client-confirmed site coordinates. The
+// other Piraeus landmarks are approximate, not survey-accurate.
 const mapPoints = [
-  { name: "Urban Piraeus Oasis", lat: 37.9421, lng: 23.6462, isSite: true },
+  { name: "Urban Piraeus Oasis", lat: 37.94734210830303, lng: 23.656522176345334, isSite: true },
   { name: "Piraeus Tower", lat: 37.9428, lng: 23.6464 },
   { name: "Karaiskaki Stadium", lat: 37.9486, lng: 23.6428 },
   { name: "Piraeus Port", lat: 37.9382, lng: 23.6459 },
