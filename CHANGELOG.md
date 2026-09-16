@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Revert gallery images to small, staggered thumbnails
+
+### Fixed
+
+- Misread an earlier note as "images too small" and enlarged them to near-full-bleed. The client's actual direction was the opposite: small thumbnail-sized images (~1/10 the section size), alternating top/bottom as they scroll. Reverted to small `.area-scroll-item`s with wide gaps and alternating `align-self` (odd = top, even = bottom) for the staggered look.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Fix gallery intro copy layout to match reference
 
 ### Fixed
