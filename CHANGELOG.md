@@ -1,5 +1,25 @@
 # Change Log
 
+## 2026-09-16 — Replace section 4 with an interactive Google Map
+
+### Added
+
+- Replaced the decorative fake-map illustration and "Why Piraeus" text column in section 4 with `LocationMap`: a full-viewport-height, custom-styled interactive Google Map (client-provided reference layout) with a dark overlay panel — active location name, a clickable list of the other locations, and an "Open Google Map" button. Clicking a name pans/zooms the map and re-highlights the marker.
+- Reuses the four section-3 gallery locations (Piraeus Tower, Karaiskaki Stadium, Piraeus Port, Marina Zeas) plus the project site itself, with indicative coordinates.
+- Rewrote the previously-unused `client/src/components/Map.tsx` scaffold component (`MapView`) to load the Google Maps JS API directly with the client's own `VITE_GOOGLE_MAPS_API_KEY`, instead of the inert third-party "Frontend Forge" proxy it shipped wired to.
+- Falls back to a plain gradient block if the API key is missing/invalid, rather than a broken map.
+
+### Fixed
+
+- The section-3 (`.location-gallery`) and section-4 (`.location-map-section`) full-bleed heights on mobile (`82vh`) were shorter than the sticky hero's own height (`calc(100vh - 66px)`), letting the hero peek out below them. Both now use the identical formula as the hero so they fully cover it at every breakpoint.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Fix card-stack scroll effect (was broken since it shipped)
 
 ### Fixed
