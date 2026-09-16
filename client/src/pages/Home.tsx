@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDownRight, ArrowUpRight, ChevronRight, Compass, Leaf, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Compass, Leaf, Menu, X } from "lucide-react";
 
 const images = {
   hero: "/images/piraeus-hero.jpg",
@@ -36,12 +36,23 @@ const rationale = [
 
 const timeline = ["Architectural study submitted", "Current project maturation", "Partner network formation", "Initial investor release", "Public sales releases", "Construction phases", "Indicative delivery"];
 
+// Placeholder set — swap for the "Location Piraeus Urban Oasis" images once committed to client/public/images/.
+const locationImages = [images.courtyard, images.lounge, images.rooftop, images.detail];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeBuilding, setActiveBuilding] = useState(0);
   const [activeResidence, setActiveResidence] = useState(0);
+  const [locationSlide, setLocationSlide] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setLocationSlide((value) => (value + 1) % locationImages.length);
+    }, 4000);
+    return () => window.clearInterval(id);
+  }, []);
 
   // Motion note: keep this observer lightweight. It reveals whole editorial chapters;
   // individual tab transitions are handled by keyed media elements below.
@@ -141,7 +152,17 @@ export default function Home() {
         <p className="workplace-address" aria-hidden="true">60 Omiridou Skylitsi</p>
       </section>
 
-      <section className="ink-section vision-panel"><div className="section-kicker light"><span>01</span><span>The vision</span></div><div className="intro-grid"><div className="intro-title"><p className="eyebrow light">A new residential community</p><h2>Quality living,<br /><span>within reach.</span></h2></div><div className="intro-copy"><p className="large-copy">Urban Piraeus Oasis brings together contemporary architecture, different types of homes and shared spaces that make everyday life feel more complete.</p><p className="body-copy muted-light">The project is conceived as a connected residential destination within the broader, evolving Piraeus ecosystem — a place where landscape, amenities and access work together.</p><button className="text-link light-link" onClick={() => scrollTo("location")}>Why Piraeus <ArrowDownRight size={17} /></button></div></div><div className="outline-words" aria-hidden="true"><span>OASIS</span><span>OASIS</span></div></section>
+      <section className="location-gallery">
+        {locationImages.map((src, index) => (
+          <img key={src} src={src} alt="Urban Piraeus Oasis location" className={`location-gallery-image ${index === locationSlide ? "active" : ""}`} />
+        ))}
+        <div className="location-gallery-wash" />
+        <div className="location-gallery-dots">
+          {locationImages.map((src, index) => (
+            <button key={src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)} aria-label={`Show location image ${index + 1}`} />
+          ))}
+        </div>
+      </section>
 
       <section id="location" className="location-section location-investor"><div className="location-copy"><div className="section-kicker"><span>02</span><span>Why Piraeus</span></div><p className="eyebrow">The location</p><h2>Connected to<br /><em>what’s next.</em></h2><p className="large-copy dark-copy">Piraeus is a city in transition — a port, a mobility hub and an increasingly important part of the wider Athens urban story.</p><div className="reasons-list"><div><span>01</span><strong>Port city momentum</strong><p>A major gateway with a distinct local identity and an expanding economic ecosystem.</p></div><div><span>02</span><strong>New urban life</strong><p>Residential, hospitality and public-realm investment are reshaping the experience of the city.</p></div><div><span>03</span><strong>Mobility by nature</strong><p>A connected metropolitan location with access to the port, rail and wider Athens network.</p></div><div><span>04</span><strong>Everyday relevance</strong><p>A real city with services, culture, education and the Aegean at its edge.</p></div></div></div><div className="map-card location-map" aria-label="Indicative map of Urban Piraeus Oasis and surrounding points"><div className="map-grid" /><div className="map-orbit orbit-one" /><div className="map-orbit orbit-two" /><div className="map-pin"><span>PU</span><i /></div><div className="map-labels"><span className="label-oasis">Project site</span><span className="label-port">Piraeus Port</span><span className="label-sea">Aegean Sea</span><span className="label-metro">Metro / rail</span><span className="label-athens">Athens</span><span className="label-airport">Airport</span></div><div className="map-compass"><Compass size={18} /><span>N</span></div><p className="map-note">Indicative location diagram.<br />Distances and travel times to be confirmed.</p></div></section>
 

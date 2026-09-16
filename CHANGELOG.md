@@ -1,5 +1,26 @@
 # Change Log
 
+## 2026-09-16 — Replace section 3 with full-screen rotating image gallery
+
+### Added
+
+- Replaced the "Quality living, within reach." vision panel with `.location-gallery`: a full-viewport-height, edge-to-edge image slideshow that auto-advances every 4 seconds (crossfade) with clickable dot indicators. Keeps the same card-stack sticky/overlap treatment as the surrounding sections.
+
+### Changed
+
+- `locationImages` currently reuses the existing residence photos as placeholders. The client is committing real photos directly to `main` under "Location Piraeus Urban Oasis" — swap them in once available (see CLAUDE.md).
+
+### Removed
+
+- Removed the now-unused `.ink-section`, `.vision-panel`, `.intro-grid`, `.intro-copy`, `.intro-title`, and `.outline-words` styles, which were exclusive to the replaced section.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Enlarge section 2 address watermark
 
 ### Changed
