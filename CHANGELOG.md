@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Update section 2 stats tiles to Piraeus figures
+
+### Changed
+
+- Replaced the three stats tiles in `.workplace-section` (previously "Rentable area 648,000 sf" / "Total floors 31" / "Year renovated 2021") with client-provided Piraeus figures: Gross buildable area 26,480 m², Total floors 10, To be delivered Q4 2028.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Update section 2 intro copy to Piraeus content
 
 ### Changed

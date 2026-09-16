@@ -53,7 +53,7 @@ The current motion is intentionally editorial and restrained:
 - Keep the masterplan and residence selectors functional.
 - Keep the inquiry form as a frontend-only interaction unless an approved backend/CRM integration is requested.
 - Preserve the current WhatsApp and email CTA behavior unless the client provides confirmed contact details.
-- The `#overview` section (`.workplace-section`) is a work in progress being brought over from reference copy to real Piraeus content piece by piece, at the client's direction. The intro paragraphs are now Piraeus-specific; the tagline ("Every Morning Looks Different."), the image overlay ("A Workplace" / "That Works"), and the stats tiles (648,000 sf / 31 floors / 2021) are still literal reference copy from the original screenshot and don't describe this project. Don't silently rewrite the remaining reference text to match the project — check with the client first, the same way this was flagged before implementing.
+- The `#overview` section (`.workplace-section`) is a work in progress being brought over from reference copy to real Piraeus content piece by piece, at the client's direction. The intro paragraphs and stats tiles (Gross buildable area 26,480 m² / Total floors 10 / To be delivered Q4 2028) are now Piraeus-specific; the tagline ("Every Morning Looks Different.") and the image overlay ("A Workplace" / "That Works") are still literal reference copy from the original screenshot and don't describe this project. Don't silently rewrite the remaining reference text to match the project — check with the client first, the same way this was flagged before implementing.
 
 ## Validation
 

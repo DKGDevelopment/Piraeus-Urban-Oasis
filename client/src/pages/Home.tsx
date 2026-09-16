@@ -134,9 +134,9 @@ export default function Home() {
           </div>
         </div>
         <div className="workplace-stats">
-          <div><span>Rentable area</span><strong>648,000 sf</strong></div>
-          <div><span>Total floors</span><strong>31</strong></div>
-          <div><span>Year renovated</span><strong>2021</strong></div>
+          <div><span>Gross buildable area</span><strong>26,480 m²</strong></div>
+          <div><span>Total floors</span><strong>10</strong></div>
+          <div><span>To be delivered</span><strong>Q4 2028</strong></div>
         </div>
       </section>
 
