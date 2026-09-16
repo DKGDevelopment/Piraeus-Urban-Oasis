@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Double the gallery thumbnail size
+
+### Changed
+
+- Doubled `.area-scroll-item` width/height (`clamp(110px, 10vw, 190px)`/`22%` → `clamp(220px, 20vw, 380px)`/`44%`) at the client's request. Still small/staggered, just bigger.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Revert gallery images to small, staggered thumbnails
 
 ### Fixed
