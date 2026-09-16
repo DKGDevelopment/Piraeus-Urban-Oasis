@@ -8,6 +8,10 @@ const images = {
   rooftop: "/images/piraeus-rooftop.jpg",
   detail: "/images/piraeus-detail.jpg",
   workplace: "/images/piraeus-workplace.jpg",
+  locationMarinaZea: "/images/piraeus-location-marina-zea.jpg",
+  locationPort: "/images/piraeus-location-port.jpg",
+  locationTower: "/images/piraeus-location-tower.jpg",
+  locationKaraiskaki: "/images/piraeus-location-karaiskaki.jpg",
 };
 
 const buildings = [
@@ -36,8 +40,12 @@ const rationale = [
 
 const timeline = ["Architectural study submitted", "Current project maturation", "Partner network formation", "Initial investor release", "Public sales releases", "Construction phases", "Indicative delivery"];
 
-// Placeholder set — swap for the "Location Piraeus Urban Oasis" images once committed to client/public/images/.
-const locationImages = [images.courtyard, images.lounge, images.rooftop, images.detail];
+const locationImages = [
+  { src: images.locationMarinaZea, alt: "Marina Zea, Piraeus" },
+  { src: images.locationPort, alt: "Piraeus Port" },
+  { src: images.locationTower, alt: "Piraeus Tower" },
+  { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus" },
+];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -153,13 +161,13 @@ export default function Home() {
       </section>
 
       <section className="location-gallery">
-        {locationImages.map((src, index) => (
-          <img key={src} src={src} alt="Urban Piraeus Oasis location" className={`location-gallery-image ${index === locationSlide ? "active" : ""}`} />
+        {locationImages.map((image, index) => (
+          <img key={image.src} src={image.src} alt={image.alt} className={`location-gallery-image ${index === locationSlide ? "active" : ""}`} />
         ))}
         <div className="location-gallery-wash" />
         <div className="location-gallery-dots">
-          {locationImages.map((src, index) => (
-            <button key={src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)} aria-label={`Show location image ${index + 1}`} />
+          {locationImages.map((image, index) => (
+            <button key={image.src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)} aria-label={`Show ${image.alt}`} />
           ))}
         </div>
       </section>

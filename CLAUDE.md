@@ -50,7 +50,7 @@ The current motion is intentionally editorial and restrained:
 
 The former "vision panel" (`.vision-panel`, "Quality living, within reach.", the OASIS OASIS outline-word watermark) has been fully replaced at the client's direction with `.location-gallery`: a full-viewport-height (`100vh` desktop, `82vh` mobile), edge-to-edge, auto-rotating image slideshow (4s interval, crossfade), with small dot indicators at the bottom that are also clickable to jump to a slide.
 
-- `locationImages` in `Home.tsx` is currently a **placeholder** set reusing the existing residence photos (`piraeus-courtyard.jpg`, `piraeus-lounge.jpg`, `piraeus-rooftop.jpg`, `piraeus-detail.jpg`). The client committed real photos directly to `main` under a "Location Piraeus Urban Oasis" commit — once those land, move them into `client/public/images/` (following the existing `piraeus-*.jpg` naming convention) and swap `locationImages` to point at them instead.
+- `locationImages` in `Home.tsx` now uses the client's real photos, moved from the repo root (where the client committed them directly to `main`) into `client/public/images/`: `piraeus-location-marina-zea.jpg` (Marina Zea), `piraeus-location-port.jpg` (Piraeus Port), `piraeus-location-tower.jpg` (Piraeus Tower), `piraeus-location-karaiskaki.jpg` (Karaiskaki).
 - The section keeps the same card-stack sticky/overlap treatment (border-radius top corners + shadow) as the sections around it — don't drop that when editing.
 - No text overlay was requested for this section; keep it image-only unless the client asks for captions/headings.
 

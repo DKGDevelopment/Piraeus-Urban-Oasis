@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Wire real location photos into the section 3 gallery
+
+### Changed
+
+- Replaced the section 3 gallery's placeholder residence photos with the client's real location images (`4_D-MarinZea.jpg`, `Piraeus Port.jpg`, `Piraeus Tower.jpg`, `karaiskaki-kanaliena.jpg`), which the client committed directly to `main`. Moved them into `client/public/images/` as `piraeus-location-marina-zea.jpg`, `piraeus-location-port.jpg`, `piraeus-location-tower.jpg`, and `piraeus-location-karaiskaki.jpg`, and gave each slide a descriptive alt tag.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 3 with full-screen rotating image gallery
 
 ### Added
