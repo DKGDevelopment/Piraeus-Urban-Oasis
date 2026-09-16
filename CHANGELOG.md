@@ -1,5 +1,19 @@
 # Change Log
 
+## 2026-09-16 — Restyle section 2 intro paragraphs and widen the text column
+
+### Changed
+
+- `.workplace-copy p` now uses bold sans-serif (was regular-weight body copy) at a larger size, matching a client-provided reference screenshot.
+- Widened the intro paragraph column from a 620px cap to 38% of the section width, so its right edge lines up with the left edge of the image panel below it (which is 62% wide).
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Replace section 4 with an interactive Google Map
 
 ### Added
