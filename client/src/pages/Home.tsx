@@ -117,8 +117,8 @@ export default function Home() {
       <section id="overview" className="workplace-section">
         <div className="workplace-intro">
           <div className="workplace-copy">
-            <p>Located in the heart of Lower Manhattan, 250 Broadway combines exceptional connectivity with four-sided window exposures, bringing abundant natural light and expansive city views to every floor.</p>
-            <p>A 2021 modernization introduced touchless entry, destination-dispatch elevators, and upgraded amenities designed for today's workplace.</p>
+            <p>Located at the entrance of Piraeus, Piraeus Urban Oasis combines exceptional connectivity with four-sided window exposures, bringing abundant natural light and expansive city views to every floor.</p>
+            <p>Piraeus Urban Oasis sits within a broader transformation of Piraeus, where residential, hospitality, commercial and lifestyle uses are coming together to create a more connected urban environment.</p>
           </div>
           <div className="workplace-tagline">
             <p className="workplace-tagline-title">Every Morning<br />Looks Different.</p>

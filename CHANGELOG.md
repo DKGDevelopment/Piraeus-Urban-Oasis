@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Update section 2 intro copy to Piraeus content
+
+### Changed
+
+- Replaced the two intro paragraphs in `.workplace-section` (previously literal "250 Broadway" / Lower Manhattan reference copy) with client-provided Piraeus Urban Oasis copy. The tagline, image overlay text, and stats tiles remain reference copy for now.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-15 — Rebuild second section to match reference layout
 
 ### Added
