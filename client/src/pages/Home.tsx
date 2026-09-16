@@ -41,10 +41,10 @@ const rationale = [
 const timeline = ["Architectural study submitted", "Current project maturation", "Partner network formation", "Initial investor release", "Public sales releases", "Construction phases", "Indicative delivery"];
 
 const locationImages = [
-  { src: images.locationMarinaZea, alt: "Marina Zea, Piraeus" },
-  { src: images.locationPort, alt: "Piraeus Port" },
-  { src: images.locationTower, alt: "Piraeus Tower" },
-  { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus" },
+  { src: images.locationMarinaZea, alt: "Marina Zea, Piraeus", label: "Marina Zeas" },
+  { src: images.locationPort, alt: "Piraeus Port", label: "Piraeus Port" },
+  { src: images.locationTower, alt: "Piraeus Tower", label: "Piraeus Tower" },
+  { src: images.locationKaraiskaki, alt: "Karaiskaki, Piraeus", label: "Karaiskaki Stadium" },
 ];
 
 export default function Home() {
@@ -165,6 +165,9 @@ export default function Home() {
           <img key={image.src} src={image.src} alt={image.alt} className={`location-gallery-image ${index === locationSlide ? "active" : ""}`} />
         ))}
         <div className="location-gallery-wash" />
+        {locationImages.map((image, index) => (
+          <p key={image.label} className={`location-gallery-label ${index === locationSlide ? "active" : ""}`}>{image.label}</p>
+        ))}
         <div className="location-gallery-dots">
           {locationImages.map((image, index) => (
             <button key={image.src} className={index === locationSlide ? "active" : ""} onClick={() => setLocationSlide(index)} aria-label={`Show ${image.alt}`} />

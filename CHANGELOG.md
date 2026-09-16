@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Add location name overlay labels to section 3 gallery
+
+### Added
+
+- Added a bold white top-right overlay label to each gallery slide (Marina Zeas / Piraeus Port / Piraeus Tower / Karaiskaki Stadium), crossfading in sync with its image, matching a client-provided reference screenshot's style.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Wire real location photos into the section 3 gallery
 
 ### Changed

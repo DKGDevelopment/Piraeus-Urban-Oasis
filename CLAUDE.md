@@ -52,7 +52,7 @@ The former "vision panel" (`.vision-panel`, "Quality living, within reach.", the
 
 - `locationImages` in `Home.tsx` now uses the client's real photos, moved from the repo root (where the client committed them directly to `main`) into `client/public/images/`: `piraeus-location-marina-zea.jpg` (Marina Zea), `piraeus-location-port.jpg` (Piraeus Port), `piraeus-location-tower.jpg` (Piraeus Tower), `piraeus-location-karaiskaki.jpg` (Karaiskaki).
 - The section keeps the same card-stack sticky/overlap treatment (border-radius top corners + shadow) as the sections around it — don't drop that when editing.
-- No text overlay was requested for this section; keep it image-only unless the client asks for captions/headings.
+- Each slide has a `label` (top-right, large bold white sans-serif, `.location-gallery-label`) crossfading in sync with its image: Marina Zeas, Piraeus Port, Piraeus Tower, Karaiskaki Stadium — in that mapping, not list order. Matches a client-provided reference style (bold white text bleeding off the top-right of a full-bleed photo).
 
 ## Content and behavior constraints
 

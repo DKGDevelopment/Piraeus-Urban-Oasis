@@ -96,7 +96,9 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
 .location-gallery { position: relative; z-index: 1; height: 100vh; overflow: hidden; background: var(--ink); border-radius: 28px 28px 0 0; box-shadow: 0 -30px 60px rgba(0,0,0,.22); }
 .location-gallery-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
 .location-gallery-image.active { opacity: 1; }
-.location-gallery-wash { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,23,21,.5), transparent 40%); pointer-events: none; }
+.location-gallery-wash { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,23,21,.5), transparent 40%), linear-gradient(180deg, rgba(15,23,21,.4), transparent 26%); pointer-events: none; }
+.location-gallery-label { position: absolute; top: 44px; right: 0; left: 0; z-index: 1; margin: 0; padding: 0 clamp(6px, 1.5vw, 18px) 0 20px; font-family: var(--sans); font-weight: 800; font-size: clamp(34px, 5.4vw, 78px); line-height: 1; letter-spacing: -.01em; color: #fff; text-align: right; text-shadow: 0 2px 20px rgba(0,0,0,.4); white-space: nowrap; overflow: hidden; opacity: 0; transition: opacity 1.4s ease; pointer-events: none; }
+.location-gallery-label.active { opacity: 1; }
 .location-gallery-dots { position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 1; }
 .location-gallery-dots button { width: 8px; height: 8px; padding: 0; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; transition: background .25s ease, transform .25s ease; }
 .location-gallery-dots button.active { background: var(--terracotta); transform: scale(1.2); }
@@ -225,6 +227,7 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
   .hero-panel { height: calc(100vh - 66px); min-height: 480px; }
   .hero-image { object-position: 58% center; }
   .location-gallery { height: 82vh; min-height: 460px; }
+  .location-gallery-label { top: 24px; padding: 0 14px 0 14px; font-size: clamp(24px, 8vw, 44px); }
   .location-gallery-dots { bottom: 24px; }
   .light-section, .rhythm-section, .gallery-section, .contact-section { padding-left: 22px; padding-right: 22px; }
   .place-grid, .space-feature, .location-section, .rhythm-head { grid-template-columns: 1fr; }
