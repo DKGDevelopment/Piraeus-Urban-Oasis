@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-09-16 — Fix hero video bleeding through every section on scroll
+
+### Fixed
+
+- The sticky hero stays pinned behind the entire rest of the page (its containing block spans the whole document), so the scroll-reveal fade-in (opacity 0 → 1) was letting the hero show/play through *every* section's entrance transition, not just the three sections patched for this earlier. Removed the opacity animation from the reveal entirely (transform-only slide-up now, site-wide) so no section can ever show the hero through it.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-09-16 — Restyle section 2 intro paragraphs and widen the text column
 
 ### Changed

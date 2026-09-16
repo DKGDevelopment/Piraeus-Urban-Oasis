@@ -316,33 +316,23 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
   .contact-grid { margin: 82px 0 90px; }.form-row { grid-template-columns: 1fr; gap: 0; }.form-actions { flex-wrap: wrap; gap: 18px; }.contact-investor .contact-footer { margin-top: 0; }
 }
 
-/* Scroll choreography: editorial reveals, gentle depth, and panel slides. */
+/* Scroll choreography: editorial reveals, gentle depth, and panel slides.
+   The hero stays sticky-pinned behind the entire rest of the page (by
+   design, for the card-stack slide effect), so every section here must
+   stay fully opaque at all times — an opacity fade would let the hero
+   show through mid-transition. Reveal motion is transform-only. */
 @media (prefers-reduced-motion: no-preference) {
   .motion-ready > section:not(.hero-panel) {
-    opacity: 0;
     transform: translateY(34px);
-    transition: opacity .85s var(--ease-out), transform .95s var(--ease-out);
+    transition: transform .95s var(--ease-out);
   }
 
   .motion-ready > section:not(.hero-panel).is-visible {
-    opacity: 1;
     transform: translateY(0);
   }
 
   .motion-ready > section:not(.hero-panel).is-visible .section-kicker {
     animation: reveal-kicker .65s var(--ease-out) both;
-  }
-
-  /* Card-stack sections sit on top of the sticky hero — keep them fully opaque
-     throughout the reveal so the hero never shows through mid-transition. */
-  .motion-ready > section.workplace-section,
-  .motion-ready > section.location-gallery,
-  .motion-ready > section.location-map-section,
-  .motion-ready > section.workplace-section.is-visible,
-  .motion-ready > section.location-gallery.is-visible,
-  .motion-ready > section.location-map-section.is-visible {
-    opacity: 1;
-    transition: transform .95s var(--ease-out);
   }
 
   .hero-image {
