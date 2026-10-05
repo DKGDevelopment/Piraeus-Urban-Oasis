@@ -112,6 +112,13 @@ A separate route (`client/src/pages/Explore.tsx`, lazy-loaded from `App.tsx` via
 - **Unit types (placeholder for management review):** selecting a new building (N1–N5) lists the four unit types from the client's indicative pricing sheet (`unitTypes` in `Explore.tsx`: Studio 30–38 m² / €120–190k, 1-Bed 40–55 m² / €160–275k, 2-Bed 56–75 m² / €224–375k, 3-Bed 76–92 m² / €304–460k, at €4,000–5,000/m²). The ranges are identical for every building and labelled Indicative — the client doesn't yet know floors per building or the floor plans. Replace with a real per-unit list (ID, building, floor, type, m², price, availability) once provided. K1/K2 show "Preserved building. Details to follow."
 - No external HDR/environment fetch — lighting is a hemisphere + directional light so the page has no third-party runtime dependency beyond Bunny.
 
+## /documents — documents room (phase 3)
+
+`client/src/pages/Documents.tsx`, lazy-loaded route. Reached from the "Documents" link on each unit-type row in the `/explore` panel (`/documents?building=N2&unit=Studio`); the building/unit only feed the context line — **every unit shows the same document set for now**, at the client's direction. The back link returns to `/explore?building=…`, and `Explore` reads that param as its initial selection so the user lands back on the same building.
+
+- `documentGroups` is the single source for the three sections (Legal documents, Floor plans, Technical specifications). All entries are **placeholders** marked "Coming soon" — the names are reasonable defaults, not a client-confirmed list. When the client provides a PDF, add `url` to its entry (host PDFs on Bunny CDN like the model; don't commit large PDFs) and it renders a "View PDF" button.
+- Public for now. If documents must be gated (investor login/email), that needs a backend (e.g. Vercel functions issuing signed, expiring links) — flagged to the client, undecided.
+
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.

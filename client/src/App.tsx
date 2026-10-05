@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
 const Explore = lazy(() => import("./pages/Explore"));
+const Documents = lazy(() => import("./pages/Documents"));
 
 export default function App() {
   return (
@@ -18,6 +19,11 @@ export default function App() {
             <Route path="/explore">
               <Suspense fallback={<div className="explore-boot" />}>
                 <Explore />
+              </Suspense>
+            </Route>
+            <Route path="/documents">
+              <Suspense fallback={<div className="explore-boot" />}>
+                <Documents />
               </Suspense>
             </Route>
             <Route component={Home} />

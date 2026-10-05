@@ -1,8 +1,8 @@
 import { Component, Suspense, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useProgress } from "@react-three/drei";
-import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { Link, useSearch } from "wouter";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as THREE from "three";
 
 type OrbitControlsImpl = React.ComponentRef<typeof OrbitControls>;
@@ -166,7 +166,8 @@ class ModelErrorBoundary extends Component<{ children: ReactNode }, { failed: bo
 
 export default function Explore() {
   const controls = useRef<OrbitControlsImpl>(null);
-  const [selected, setSelected] = useState<string | null>(null);
+  const initialBuilding = new URLSearchParams(useSearch()).get("building");
+  const [selected, setSelected] = useState<string | null>(buildings.some((b) => b.key === initialBuilding) ? initialBuilding : null);
   const [site, setSite] = useState<Frame | null>(null);
   const [frames, setFrames] = useState<Map<string, Frame>>(new Map());
 
@@ -224,6 +225,7 @@ export default function Explore() {
                         <strong>{u.name}</strong>
                         <span>{u.size}</span>
                         <span>{u.ticket}</span>
+                        <Link href={`/documents?building=${active.key}&unit=${encodeURIComponent(u.name)}`} className="explore-docs-link">Documents <ArrowRight size={13} /></Link>
                       </li>
                     ))}
                   </ul>
