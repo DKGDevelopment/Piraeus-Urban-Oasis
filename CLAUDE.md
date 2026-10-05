@@ -125,6 +125,13 @@ A separate route (`client/src/pages/Explore.tsx`, lazy-loaded from `App.tsx` via
 
 `Documents` and `DownPayment` both `scrollTo(0, 0)` on mount — client-side navigation otherwise keeps the previous page's scroll position, so the button would land the user at the bottom of the next page.
 
+## /agreement — down-payment agreement test form (phase 5, demo only)
+
+`client/src/pages/Agreement.tsx`, lazy-loaded route, reached from the "Fill in agreement details" button at the bottom right of `/down-payment` (same `?building=&unit=` params). Fields per the client: building + unit type (selects, prefilled from the params), Unit #, Price, Name, Surname, Father's name, ID number, Country, Address — all required except the read-only price.
+
+- **Price auto-fills** from the selected unit type via `client/src/data/unitTypes.ts` — shared with `Explore.tsx` (moved out of it so this page doesn't pull in the three.js chunk). It's the indicative *range* until a per-unit price list exists.
+- **It is a demo for management:** submit shows an on-screen summary ("Test submission received") and nothing is sent or stored — the page says so twice. "Edit details" returns to the form with the values kept. Making it live means a backend (e.g. Vercel function → email/CRM, plus generating the agreement PDF) and, since it collects ID numbers and addresses, a privacy notice/GDPR basis — don't wire it to any third party without the client's decision.
+
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.

@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 const Explore = lazy(() => import("./pages/Explore"));
 const Documents = lazy(() => import("./pages/Documents"));
 const DownPayment = lazy(() => import("./pages/DownPayment"));
+const Agreement = lazy(() => import("./pages/Agreement"));
 
 export default function App() {
   return (
@@ -30,6 +31,11 @@ export default function App() {
             <Route path="/down-payment">
               <Suspense fallback={<div className="explore-boot" />}>
                 <DownPayment />
+              </Suspense>
+            </Route>
+            <Route path="/agreement">
+              <Suspense fallback={<div className="explore-boot" />}>
+                <Agreement />
               </Suspense>
             </Route>
             <Route component={Home} />
