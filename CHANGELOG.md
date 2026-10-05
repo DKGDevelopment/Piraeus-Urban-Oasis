@@ -1,5 +1,21 @@
 # Change Log
 
+## 2026-10-05 — Add documents room (phase 3)
+
+### Added
+
+- New lazy-loaded `/documents` page with three sections — Legal documents, Floor plans, Technical specifications — reached from a "Documents" link on each unit type in the `/explore` panel. Same placeholder document set for every unit ("Coming soon") until the client supplies files; entries take a `url` to become viewable PDFs.
+- The page shows the selected building and unit type, and "Back to 3D view" returns to `/explore` with that building still selected.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+Verified in headless Chromium: explore → unit documents link → documents page → back restores the building; desktop and phone layouts.
+
 ## 2026-10-05 — Show indicative unit types per building on /explore
 
 ### Added
