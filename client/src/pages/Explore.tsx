@@ -19,6 +19,15 @@ const buildings = [
   { key: "K2", label: "Building K2", kind: "Preserved building" },
 ];
 
+// Indicative ranges from the client's pricing sheet (€4,000–5,000/m²); the same for every new building
+// until a per-unit list replaces them.
+const unitTypes = [
+  { name: "Studio", size: "30–38 m²", ticket: "€120,000 – €190,000" },
+  { name: "1-Bedroom", size: "40–55 m²", ticket: "€160,000 – €275,000" },
+  { name: "2-Bedroom", size: "56–75 m²", ticket: "€224,000 – €375,000" },
+  { name: "3-Bedroom", size: "76–92 m²", ticket: "€304,000 – €460,000" },
+];
+
 const HIGHLIGHT = new THREE.Color("#c76242");
 const NONE = new THREE.Color("#000000");
 
@@ -206,7 +215,23 @@ export default function Explore() {
           {active ? (
             <div className="explore-detail">
               <h2>{active.label}</h2>
-              <p>Floor and unit selection for this building is coming next.</p>
+              {active.key.startsWith("N") ? (
+                <>
+                  <p className="explore-eyebrow explore-units-title">Unit types · Indicative</p>
+                  <ul className="explore-units">
+                    {unitTypes.map((u) => (
+                      <li key={u.name}>
+                        <strong>{u.name}</strong>
+                        <span>{u.size}</span>
+                        <span>{u.ticket}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p>Indicative ticket based on €4,000–5,000/m². Unit availability per building and floor to be confirmed.</p>
+                </>
+              ) : (
+                <p>Preserved building. Details to follow.</p>
+              )}
             </div>
           ) : (
             <p className="explore-hint">Drag to orbit, scroll to zoom, click a building to focus it.</p>

@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-05 — Show indicative unit types per building on /explore
+
+### Added
+
+- Selecting a new building (N1–N5) in the 3D viewer now lists the four unit types (Studio, 1-, 2-, 3-Bedroom) with indicative size and ticket ranges from the client's pricing sheet, for management review. Same ranges for every building until floor counts, floor plans and a per-unit list are available. Preserved buildings K1/K2 show "Details to follow."
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
 ## 2026-10-05 — Add /explore 3D site viewer with building selection
 
 ### Added
