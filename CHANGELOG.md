@@ -1,5 +1,25 @@
 # Change Log
 
+## 2026-10-05 — Add down-payment agreement test form (phase 5)
+
+### Added
+
+- "Fill in agreement details" button at the bottom right of `/down-payment`, leading to a new lazy-loaded `/agreement` test form: building, unit type, Unit #, Price (auto-filled from the selected unit type's indicative range), Name, Surname, Father's name, ID number, Country, Address.
+- Submitting shows a summary of the entered details for management review — nothing is sent or stored. "Edit details" returns to the form with the values kept.
+
+### Changed
+
+- Moved the indicative `unitTypes` data into `client/src/data/unitTypes.ts`, shared by `/explore` and `/agreement`.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+Verified in headless Chromium: down payment → form, price auto-fill and update on unit-type change, required fields block submit, summary, edit keeps values; desktop and phone.
+
 ## 2026-10-05 — Add down-payment page placeholder (phase 4)
 
 ### Added

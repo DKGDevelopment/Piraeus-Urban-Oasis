@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useSearch } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Placeholder steps until the client supplies the agreement terms (amount, timeline, refund conditions).
 const steps = [
@@ -50,6 +50,10 @@ export default function DownPayment() {
           ))}
         </ol>
       </section>
+
+      <div className="docs-next">
+        <Link href={`/agreement${search ? `?${search}` : ""}`} className="docs-next-button">Fill in agreement details <ArrowRight size={16} /></Link>
+      </div>
 
       <p className="docs-disclaimer">This page is an indicative overview, not an offer or a binding agreement. Terms are subject to final documentation.</p>
     </main>
