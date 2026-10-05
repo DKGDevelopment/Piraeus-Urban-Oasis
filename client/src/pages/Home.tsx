@@ -232,11 +232,11 @@ export default function Home() {
         <div className="site-nav">
           <button className="brand-mark" onClick={() => scrollTo("top")} aria-label="Back to top"><span className="brand-monogram">PU</span><span className="brand-name">Urban Piraeus<br />Oasis</span></button>
           <nav className="desktop-nav" aria-label="Primary navigation">
-            <button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("investors")}>Investors</button><button onClick={() => scrollTo("overview")}>Gallery</button>
+            <button onClick={() => scrollTo("masterplan")}>Masterplan</button><button onClick={() => scrollTo("location")}>Location</button><button onClick={() => scrollTo("investors")}>Investors</button><a href="/explore">Explore 3D</a><button onClick={() => scrollTo("overview")}>Gallery</button>
           </nav>
           <button className="nav-cta" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={15} /></button>
           <button className="menu-button" onClick={() => setMenuOpen((value) => !value)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-          {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
+          {menuOpen && <div className="mobile-nav">{["overview", "location", "masterplan", "investors"].map((id, index) => <button key={id} onClick={() => scrollTo(id)}><span>0{index + 1}</span>{id}</button>)}<a className="mobile-nav-link" href="/explore"><span>3D</span>Explore 3D</a><button className="mobile-nav-contact" onClick={() => scrollTo("contact")}>Request information <ArrowUpRight size={16} /></button></div>}
         </div>
       </header>
 
