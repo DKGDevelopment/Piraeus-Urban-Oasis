@@ -360,6 +360,14 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 300; }
 .docs-group li div span { display: block; margin-top: 3px; font-size: 12px; color: rgba(27,42,39,.6); }
 .docs-group li em { font-style: normal; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: rgba(27,42,39,.45); }
 .docs-group li a { padding: 9px 12px; background: var(--ink); color: var(--sand); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+.docs-next { display: flex; justify-content: flex-end; max-width: 1100px; margin: 40px auto 0; padding: 0 clamp(22px, 6vw, 60px); }
+.docs-next-button { display: inline-flex; align-items: center; gap: 12px; padding: 15px 20px; background: var(--terracotta); color: #fff; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, gap .2s var(--ease-out); }
+.docs-next-button:hover { background: var(--terracotta-deep); gap: 18px; }
+.dp-steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+.dp-steps li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.dp-steps li > span { font-family: var(--serif); font-size: 18px; color: var(--terracotta); }
+.dp-steps strong { display: block; font-size: 15px; font-weight: 500; }
+.dp-steps p { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: rgba(27,42,39,.6); }
 .docs-disclaimer { max-width: 1100px; margin: 30px auto 0; padding: 0 clamp(22px, 6vw, 60px); font-size: 11px; line-height: 1.5; color: rgba(27,42,39,.5); }
 
 @media (max-width: 800px) {
