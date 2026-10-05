@@ -1,5 +1,22 @@
 # Change Log
 
+## 2026-10-05 — Add /explore 3D site viewer with building selection
+
+### Added
+
+- New lazy-loaded `/explore` route (wouter) rendering the architect's model with three.js / react-three-fiber: orbit/zoom, loading progress bar, error fallback, and a building list (N1–N5, preserved K1/K2). Selecting a building from the list or by clicking it in 3D highlights it in terracotta and eases the camera to frame it. Phone layout stacks the 3D view above the list.
+- "Explore 3D" link in the desktop and mobile nav.
+- Model served from Bunny CDN (`azel-web-v2.glb`, ~24 MB), compressed from the 165 MB release asset with a pipeline that preserves per-building node names and fixes the source export's black base colours.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+Verified in headless Chromium: model loads, site view framing, building highlight and camera move, phone layout.
+
 ## 2026-09-16 — Remove the "About DKG Development" section
 
 ### Removed
