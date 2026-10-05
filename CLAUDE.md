@@ -119,6 +119,12 @@ A separate route (`client/src/pages/Explore.tsx`, lazy-loaded from `App.tsx` via
 - `documentGroups` is the single source for the three sections (Legal documents, Floor plans, Technical specifications). All entries are **placeholders** marked "Coming soon" — the names are reasonable defaults, not a client-confirmed list. When the client provides a PDF, add `url` to its entry (host PDFs on Bunny CDN like the model; don't commit large PDFs) and it renders a "View PDF" button.
 - Public for now. If documents must be gated (investor login/email), that needs a backend (e.g. Vercel functions issuing signed, expiring links) — flagged to the client, undecided.
 
+## /down-payment — down-payment explainer (phase 4, placeholder)
+
+`client/src/pages/DownPayment.tsx`, lazy-loaded route, reached from the terracotta "Continue to down payment" button at the bottom right of `/documents` (`.docs-next`). Carries the same `?building=&unit=` params through, and "Back to documents" returns with them. The four `steps` (reserve → sign agreement → transfer → final contract) are **placeholder outline copy** — the client still has to supply the real terms (amount/percentage, timeline, refund/cancellation conditions), ideally lawyer-reviewed. Next phase after this: the agreement form.
+
+`Documents` and `DownPayment` both `scrollTo(0, 0)` on mount — client-side navigation otherwise keeps the previous page's scroll position, so the button would land the user at the bottom of the next page.
+
 ## Content and behavior constraints
 
 - Project facts are intentionally labeled **indicative** where not formally confirmed.

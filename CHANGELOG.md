@@ -1,5 +1,21 @@
 # Change Log
 
+## 2026-10-05 — Add down-payment page placeholder (phase 4)
+
+### Added
+
+- "Continue to down payment" button at the bottom right of `/documents`, leading to a new lazy-loaded `/down-payment` page that explains the process in four placeholder steps until the client supplies the agreement terms. The building/unit context carries through, with "Back to documents" returning to the same documents page.
+- Documents and down-payment pages open scrolled to the top.
+
+### Validation
+
+```bash
+pnpm check
+pnpm build
+```
+
+Verified in headless Chromium: documents → down payment → back, desktop and phone.
+
 ## 2026-10-05 — Add documents room (phase 3)
 
 ### Added

@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Link, useSearch } from "wouter";
-import { ArrowLeft, FileText } from "lucide-react";
+import { ArrowLeft, ArrowRight, FileText } from "lucide-react";
 
 // Placeholder set until the client supplies the real files; the same documents apply to every unit for now.
 // Give an entry a `url` (e.g. a Bunny CDN link to the PDF) to make it viewable.
@@ -34,10 +35,14 @@ const documentGroups: { title: string; intro: string; docs: { name: string; note
 ];
 
 export default function Documents() {
-  const params = new URLSearchParams(useSearch());
+  const search = useSearch();
+  const params = new URLSearchParams(search);
   const building = params.get("building");
   const unit = params.get("unit");
   const backHref = building ? `/explore?building=${encodeURIComponent(building)}` : "/explore";
+  const nextHref = `/down-payment${search ? `?${search}` : ""}`;
+
+  useEffect(() => window.scrollTo(0, 0), []);
 
   return (
     <main className="docs-shell">
@@ -78,6 +83,10 @@ export default function Documents() {
           </ul>
         </section>
       ))}
+
+      <div className="docs-next">
+        <Link href={nextHref} className="docs-next-button">Continue to down payment <ArrowRight size={16} /></Link>
+      </div>
 
       <p className="docs-disclaimer">All documents are provided for information and due-diligence purposes. Plans and specifications are indicative and subject to final approvals and documentation.</p>
     </main>
